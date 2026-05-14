@@ -1,0 +1,16 @@
+site_name: UnBemEstar
+site_description: Sistema de gestão de agendamentos para clínicas de fisioterapia
+site_author: Grupo Hopper — FGA0138
+
+theme:
+  name: material
+  language: pt
+  palette:
+    primary: green
+    accent: teal
+
+nav:
+  - Home: index.md
+  - Visão do Produto: documento_visao/visao.md
+  - Atas de Reunião: atas/index.md
+  - Templates: templates/index.md
