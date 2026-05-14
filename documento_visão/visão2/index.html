@@ -1,0 +1,1659 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Sistema de gestão de agendamentos para clínicas de fisioterapia">
+      
+      
+        <meta name="author" content="Grupo Hopper — FGA0138">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>[cite_start]Hopper - UnBilidade [cite: 1] - UnBemEstar</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cite_starthopper-unbilidade-cite-1" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="UnBemEstar" class="md-header__button md-logo" aria-label="UnBemEstar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            UnBemEstar
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              [cite_start]Hopper - UnBilidade [cite: 1]
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="UnBemEstar" class="md-nav__button md-logo" aria-label="UnBemEstar" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    UnBemEstar
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento_visao/visao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão do Produto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Atas de Reunião
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Templates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cite_startvisao-do-produto-e-do-projeto-cite-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]VISÃO DO PRODUTO E DO PROJETO [cite: 2]
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[cite_start]VISÃO DO PRODUTO E DO PROJETO [cite: 2]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cite_startintegrantes-do-grupo-cite-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]Integrantes do Grupo [cite: 3]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cite_starthistorico-de-revisoes-cite-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]Histórico de Revisões [cite: 6]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cite_start1-visao-geral-do-produto-cite-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]1. Visão Geral do Produto [cite: 12]
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[cite_start]1. Visão Geral do Produto [cite: 12]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cite_start11-contexto-de-negocio-cite-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]1.1 Contexto de Negócio [cite: 13]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cite_start12-problema-e-analise-de-causa-ishikawa-cite-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]1.2 Problema e Análise de Causa (Ishikawa) [cite: 18]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cite_start13-solucao-proposta-e-justificativa-cite-44" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]1.3 Solução Proposta e Justificativa [cite: 44]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cite_start14-declaracao-de-posicao-do-produto-cite-48" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]1.4 Declaração de Posição do Produto [cite: 48]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cite_start15-objetivos-do-produto-cite-60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]1.5 Objetivos do Produto [cite: 60]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cite_start16-tecnologias-a-serem-utilizadas-cite-62" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]1.6 Tecnologias a serem utilizadas [cite: 62]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cite_start2-visao-geral-do-projeto-cite-85" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]2. Visão Geral do Projeto [cite: 85]
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[cite_start]2. Visão Geral do Projeto [cite: 85]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cite_start21-ciclo-de-vida-do-projeto-de-desenvolvimento-de-software-cite-86" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]2.1 Ciclo de Vida do Projeto de Desenvolvimento de Software [cite: 86]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cite_start22-organizacao-do-projeto-cite-107" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]2.2 Organização do Projeto [cite: 107]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cite_start23-planejamento-das-fases-eou-iteracoes-do-projeto-cite-115" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]2.3 Planejamento das Fases e/ou Iterações do Projeto [cite: 115]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cite_start24-matriz-de-comunicacao-cite-121" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]2.4 Matriz de Comunicação [cite: 121]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cite_start25-gerenciamento-de-riscos-cite-129" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]2.5 Gerenciamento de Riscos [cite: 129]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cite_start26-criterios-de-replanejamento-cite-133" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]2.6 Critérios de Replanejamento [cite: 133]
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[cite_start]2.6 Critérios de Replanejamento [cite: 133]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cite_start261-avaliando-grau-de-riscos-cite-145" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]2.6.1 Avaliando grau de riscos [cite: 145]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cite_start3-processo-de-desenvolvimento-de-software-cite-155" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]3. Processo de Desenvolvimento de Software [cite: 155]
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[cite_start]3. Processo de Desenvolvimento de Software [cite: 155]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cite_start31-scrum-adaptado-cite-159" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]3.1 Scrum Adaptado [cite: 159]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cite_start32-praticas-de-xp-incorporadas-cite-171" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]3.2 Práticas de XP Incorporadas [cite: 171]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cite_start4-declaracao-de-escopo-do-projeto-cite-180" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]4. Declaração de Escopo do Projeto [cite: 180]
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[cite_start]4. Declaração de Escopo do Projeto [cite: 180]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cite_start41-perfis-cite-204" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]4.1 Perfis [cite: 204]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cite_start42-cenarios-cite-213" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]4.2 Cenários [cite: 213]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cite_start43-tabela-de-backlog-do-produto-cite-226" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]4.3 Tabela de Backlog do produto [cite: 226]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cite_start5-metricas-e-medicoes-cite-268" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]5. Métricas e Medições [cite: 268]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cite_start6-testes-de-software-cite-293" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]6. Testes de Software [cite: 293]
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[cite_start]6. Testes de Software [cite: 293]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cite_start61-estrategia-de-testes-cite-295" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]6.1 Estratégia de Testes [cite: 295]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cite_start62-niveis-e-tipos-de-teste-cite-302" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]6.2 Níveis e Tipos de Teste [cite: 302]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cite_start63-roteiro-de-testes-exemplo-para-a-sprint-3-cite-310" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]6.3 Roteiro de Testes (Exemplo para a Sprint 3) [cite: 310]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cite_start7-referencias-bibliograficas-cite-322" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [cite_start]7. Referências Bibliográficas [cite: 322]
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="cite_starthopper-unbilidade-cite-1">[cite_start]Hopper - UnBilidade [cite: 1]</h1>
+<h2 id="cite_startvisao-do-produto-e-do-projeto-cite-2">[cite_start]VISÃO DO PRODUTO E DO PROJETO [cite: 2]</h2>
+<p>[cite_start]<strong>Versão 0.9.5</strong> [cite: 2]</p>
+<h3 id="cite_startintegrantes-do-grupo-cite-3">[cite_start]Integrantes do Grupo [cite: 3]</h3>
+<table>
+<thead>
+<tr>
+<th>Matrícula</th>
+<th>Nome</th>
+<th>Função (responsabilidade)</th>
+<th>Pontos de participação na elaboração</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>241025720</td>
+<td>Vitor Eduardo Araújo</td>
+<td>Líder, Documentação e Scrum Master</td>
+<td>[cite_start]10 [cite: 4]</td>
+</tr>
+<tr>
+<td>242028815</td>
+<td>Breno Elias de Carvalho Correia</td>
+<td>Arquitetura e DevOps</td>
+<td>[cite_start]10 [cite: 4]</td>
+</tr>
+<tr>
+<td>241038791</td>
+<td>Flavia de Melo Rebelato</td>
+<td>Product Owner</td>
+<td>[cite_start]10 [cite: 4]</td>
+</tr>
+<tr>
+<td>241012098</td>
+<td>Brenda Maria Cavalcante Chaves</td>
+<td>Desenvolvedor Front-End</td>
+<td>[cite_start]10 [cite: 4]</td>
+</tr>
+<tr>
+<td>251016045</td>
+<td>Thiago da Silva Borges</td>
+<td>Desenvolvedor Back-End</td>
+<td>[cite_start]10 [cite: 4]</td>
+</tr>
+<tr>
+<td>241025784</td>
+<td>João Paulo da Silva Pereira</td>
+<td>Documentação e Requisitos</td>
+<td>[cite_start]10 [cite: 4]</td>
+</tr>
+<tr>
+<td>241025819</td>
+<td>Pablo Antonio Martins de Sousa</td>
+<td>Arquitetura e DevOps</td>
+<td>[cite_start]10 [cite: 4]</td>
+</tr>
+<tr>
+<td>241041204</td>
+<td>PEDRO VICTOR TEIXEIRA SILVA</td>
+<td>Desenvolvedor Back-End</td>
+<td>[cite_start]10 [cite: 4]</td>
+</tr>
+<tr>
+<td>231011023</td>
+<td>Alexandre Vilar Valadares Fonseca</td>
+<td>Desenvolvedor Front-End</td>
+<td>[cite_start]10 [cite: 4]</td>
+</tr>
+<tr>
+<td>222006866</td>
+<td>João Vitor Tavares de Sá Lima</td>
+<td>Arquitetura e DevOps</td>
+<td>[cite_start]10 [cite: 4]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cite_starthistorico-de-revisoes-cite-6">[cite_start]Histórico de Revisões [cite: 6]</h3>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Versão</th>
+<th>Descrição</th>
+<th>Autor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>23/04/26</td>
+<td>0.1</td>
+<td>Primeira análise do documento e aquisição dos primeiros requisistos</td>
+<td>[cite_start]Vitor Araújo, Flávia Rebelato e João Paulo [cite: 7]</td>
+</tr>
+<tr>
+<td>25/04/26</td>
+<td>0.3</td>
+<td>Objetivos do produto, solução proposta e definição de tecnologias a serem ultilizadas</td>
+<td>[cite_start]Araújo Vitor [cite: 7]</td>
+</tr>
+<tr>
+<td>30/04/26</td>
+<td>0.6</td>
+<td>Backlog, criação dos perfis, planejamento, métricas, roteiro dos testes de software e referências</td>
+<td>[cite_start]Vitor Araújo, João Paulo e Flávia Rebelato [cite: 7]</td>
+</tr>
+<tr>
+<td>04/05/26</td>
+<td>0.9</td>
+<td>Inclusão de novo membro e finalização do documento2</td>
+<td>[cite_start]Vitor Araújo, João Paulo e Flávia Rebelato [cite: 7]</td>
+</tr>
+<tr>
+<td>05/05/26</td>
+<td>0.9.5</td>
+<td>Métrica e medições, Teste de Software e Referências</td>
+<td>[cite_start]João Paulo, Breno Elias [cite: 7]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="cite_start1-visao-geral-do-produto-cite-12">[cite_start]1. Visão Geral do Produto [cite: 12]</h2>
+<h3 id="cite_start11-contexto-de-negocio-cite-13">[cite_start]1.1 Contexto de Negócio [cite: 13]</h3>
+<p>[cite_start]O cenário operacional das clínicas de fisioterapia caracteriza-se por um fluxo constante de pacientes que demandam tratamentos recorrentes e sessões de longo prazo. [cite: 14] [cite_start]Essa natureza do serviço exige uma gestão de agenda extremamente precisa para garantir a continuidade terapêutica. [cite: 15] [cite_start]Entretanto, o modelo de atendimento atual é marcado pela descentralização, onde a marcação de consultas ocorre majoritariamente de forma manual através de redes sociais e aplicativos de mensagens instantâneas. [cite: 16] [cite_start]Esse ambiente de gestão, desprovido de ferramentas dedicadas, resulta em processos dependentes da memória humana ou de anotações físicas e digitais não integradas, dificultando o controle gerencial sobre a ocupação dos profissionais e a real disponibilidade da clínica. [cite: 17]</p>
+<h3 id="cite_start12-problema-e-analise-de-causa-ishikawa-cite-18">[cite_start]1.2 Problema e Análise de Causa (Ishikawa) [cite: 18]</h3>
+<p>[cite_start]A carência de automação e de um controle centralizado acarreta gargalos operacionais e prejuízos financeiros diretos. [cite: 19] [cite_start]A falta de critérios sistêmicos para a gerência de urgências e a inexistência de notificações automáticas impedem que a clínica responda com agilidade às flutuações da demanda. [cite: 20] [cite_start]Esse cenário torna o fluxo de trabalho suscetível a erros humanos, comprometendo a segurança dos dados e a qualidade do serviço. [cite: 21]</p>
+<p>[cite_start]<em>A Figura 1 do Documento (Ishikawa) demonstra os principais problemas identificados agrupados em MÉTODOS, MÃO DE OBRA, TECNOLOGIA e MEDIÇÃO.</em> [cite: 22, 23, 30, 31, 38]</p>
+<p>[cite_start]O problema central não é apenas a falta de uma agenda, mas a fragmentação das causas. [cite: 40] [cite_start]A utilização de métodos informais (Métodos) aliada à falta de ferramentas específicas (Tecnologia) gera um ciclo de falhas humanas (Pessoas) e falta de dados para decisão (Medição), resultando inevitavelmente no overbooking e na evasão de horários. [cite: 41, 43]</p>
+<h3 id="cite_start13-solucao-proposta-e-justificativa-cite-44">[cite_start]1.3 Solução Proposta e Justificativa [cite: 44]</h3>
+<p>[cite_start]A solução proposta consiste no desenvolvimento de uma plataforma web de gestão e automação de agendamento, que aborde justamente a solução dos problemas descritos. [cite: 45] [cite_start]O software atuará como um sistema centralizado de controle operacional, eliminando a dependência de processos manuais e informais, auxiliando a equipe operacional da clínica em seu dia a dia. [cite: 46] [cite_start]Ao garantir a segurança e a conformidade dos dados clínicos em um ambiente dedicado, o software visa converter processos manuais fragmentados em um fluxo de trabalho seguro e eficiente, proporcionando sustentabilidade financeira à clínica e uma experiência de atendimento superior tanto para os profissionais quanto para os pacientes. [cite: 47]</p>
+<h3 id="cite_start14-declaracao-de-posicao-do-produto-cite-48">[cite_start]1.4 Declaração de Posição do Produto [cite: 48]</h3>
+<p>[cite_start]O produto que estamos propondo, é um sistema web especializado em gestão ativa de agenda. [cite: 49] [cite_start]Diferente de uma agenda digital passiva, o software atua como um motor de busca de eficiência, integrando a interface do paciente com a visão administrativa do gestor para garantir que a capacidade operacional da clínica seja sempre maximizada. [cite: 50] [cite_start]Enquanto concorrentes exigem que a secretária identifique um horário vago e entre em contato manual com o próximo paciente, o Hopper automatiza esse "casamento" entre a vaga disponível e a lista de espera, reduzindo drasticamente o tempo de resposta e o erro humano. [cite: 51]</p>
+<p>[cite_start]<strong>Usuários-alvo e Clientes:</strong> [cite: 52]
+* Gestores e Fisioterapeutas que buscam previsibilidade financeira e organização. [cite_start]O produto é importante para eles pois reduz o prejuízo causado por janelas vazias e libera a equipe de tarefas repetitivas de chat. [cite: 53]
+* Para os pacientes, que buscam autonomia e clareza. [cite_start]São pessoas que preferem resolver o agendamento de forma assíncrona, sem a necessidade de ligações ou espera em filas de WhatsApp, valorizando a segurança de seus dados. [cite: 54]</p>
+<p>[cite_start]<strong>Por que os clientes deveriam utilizar este produto?</strong> A principal motivação é a proteção da lucratividade. [cite: 55] Uma clínica de fisioterapia vende "tempo de atendimento". [cite_start]Cada hora vaga é um produto que perece. [cite: 56] [cite_start]O nosso sistema é desenhado para garantir que, caso ocorra um cancelamento, o sistema trabalhe para preencher aquela vaga em minutos através de algoritmos de notificação inteligente, algo que as ferramentas genéricas de redes sociais ou agendas estáticas não oferecem. [cite: 57]</p>
+<table>
+<thead>
+<tr>
+<th>Tópico</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Para:</strong></td>
+<td>[cite_start]Gestores de clínicas de fisioterapia e seus pacientes [cite: 59]</td>
+</tr>
+<tr>
+<td><strong>Necessidade:</strong></td>
+<td>Organizar, automatizar, centralizar, integrar e facilitar OS agendamentos de uma clínica de fisioterapia em um sistema único. [cite_start]Sofrem com ociosidade da agenda, cancelamentos e ineficiência no atendimento via redes sociais. [cite: 59]</td>
+</tr>
+<tr>
+<td><strong>O (nome do produto):</strong></td>
+<td>[cite_start]UnBilidade [cite: 59]</td>
+</tr>
+<tr>
+<td><strong>Que:</strong></td>
+<td>[cite_start]Automatiza o ciclo de agendamentos e a ocupação imediata de lacunas deixadas por desistências. [cite: 59]</td>
+</tr>
+<tr>
+<td><strong>Ao contrário:</strong></td>
+<td>[cite_start]Softwares ERP genéricos ou robustos demasiadamente, como o ZenFisio, que focam numa gestão administrativa. [cite: 59]</td>
+</tr>
+<tr>
+<td><strong>Nosso produto:</strong></td>
+<td>[cite_start]Prioriza a recuperação de receita e experiência de agendamento pelo próprio usuário. [cite: 59]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cite_start15-objetivos-do-produto-cite-60">[cite_start]1.5 Objetivos do Produto [cite: 60]</h3>
+<p>[cite_start]O projeto tem o objetivo de aumentar a eficiência nos agendamentos de clínicas de fisioterapia por meio de uma plataforma web limpa e objetiva, com esquema de cores acessíveis para todas as idades, com interfaces tanto para paciente, tanto para secretário/médico, promovendo um menor número de desmarcações nas consultas por mudanças de horários e centralizando a informação em um sistema único. [cite: 61]</p>
+<h3 id="cite_start16-tecnologias-a-serem-utilizadas-cite-62">[cite_start]1.6 Tecnologias a serem utilizadas [cite: 62]</h3>
+<ul>
+<li>[cite_start]<strong>Front-end:</strong> React.js com o framework Next.js (TypeScript) [cite: 63, 64]</li>
+<li>[cite_start]<strong>Back-end:</strong> Next.js API Routes (TypeScript), Validação com lib Zod, Vercel Cron, Resend (e-mails) [cite: 65, 66, 67, 68, 69]</li>
+<li>[cite_start]<strong>Testes:</strong> Vitest + Supertest [cite: 70, 71]</li>
+<li>[cite_start]<strong>Banco de dados:</strong> Supabase (PostgreSQL gerenciado) [cite: 72, 73]</li>
+<li>[cite_start]<strong>Hospedagem e Deploy:</strong> Vercel [cite: 75, 76]</li>
+<li>[cite_start]<strong>Ambiente de desenvolvimento:</strong> VSCode (Visual Studio Code) [cite: 77, 78]</li>
+<li>[cite_start]<strong>Ferramentas adicionais:</strong> GitHub (versionamento), GitHub Pages (documentação), Jira (backlog), WhatsApp, Microsoft Teams, Discord. [cite: 79, 81, 82, 83]</li>
+</ul>
+<hr />
+<h2 id="cite_start2-visao-geral-do-projeto-cite-85">[cite_start]2. Visão Geral do Projeto [cite: 85]</h2>
+<h3 id="cite_start21-ciclo-de-vida-do-projeto-de-desenvolvimento-de-software-cite-86">[cite_start]2.1 Ciclo de Vida do Projeto de Desenvolvimento de Software [cite: 86]</h3>
+<p>[cite_start]A figura abaixo apresenta o ciclo de vida usando o framework Scrum adotado no desenvolvimento do Unbilidade. [cite: 87] [cite_start]Para o desenvolvimento do projeto UnBilidade, será adotada a metodologia ágil adaptada, utilizando uma abordagem híbrida que combina os frameworks Scrum e XP (Extreme Programming). [cite: 103] [cite_start]A adoção desse framework se justifica pela natureza e proposição do projeto que necessita de entrega contínua de valor ao cliente final. [cite: 104]</p>
+<p>[cite_start]A aplicação do Scrum possibilita a organização do trabalho em sprints curtos, com entregas incrementais, o que facilita a adaptação contínua às necessidades dos usuários. [cite: 105] [cite_start]Já o XP será adotado com ênfase em práticas de engenharia de software que elevam a qualidade do código e fortalecem a colaboração da equipe, incluindo pair programming, refatoração contínua, feedback rápido e integração contínua. [cite: 106]</p>
+<h3 id="cite_start22-organizacao-do-projeto-cite-107">[cite_start]2.2 Organização do Projeto [cite: 107]</h3>
+<p>[cite_start]O projeto UnBilidade foi organizado a partir de uma distribuição clara de papéis e responsabilidades, sem vínculos hierárquicos entre os integrantes. [cite: 108] [cite_start]Todos os membros são vistos como igualmente fundamentais para o êxito da iniciativa, contribuindo de acordo com suas competências técnicas, experiência e disponibilidade. [cite: 109] [cite_start]A equipe está distribuída em papéis claros de forma que cada membro tenha uma função específica, mas não se limitando a ela. [cite: 110]</p>
+<table>
+<thead>
+<tr>
+<th>Papel</th>
+<th>Atribuições</th>
+<th>Responsável</th>
+<th>Participantes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Desenvolvedor Front-End</td>
+<td>Idealizar design do produto, codificar a interface, codificar testes unitários, realizar refatoração, gerar análise de usuários, construir plano de implementação, documentar</td>
+<td>Vitor Araújo</td>
+<td>[cite_start]Brenda Chaves, Alexandre Vilar [cite: 111]</td>
+</tr>
+<tr>
+<td>Desenvolvedor Back-End</td>
+<td>Modelar e codificar banco de dados, codificar testes unitários, realizar refatoração, documentar</td>
+<td>Vitor Araújo</td>
+<td>[cite_start]Pedro Silva, Thiago Borges [cite: 111]</td>
+</tr>
+<tr>
+<td>Desenvolvedor DevOps</td>
+<td>Integrar back-end e front-end, codificar testes unitários, realizar refatoração, documentar, distribuir produto, manter infraestrutura através de monitoramento</td>
+<td>Vitor Araújo</td>
+<td>[cite_start]João Vitor, Pablo Antônio, Breno Elias [cite: 111]</td>
+</tr>
+<tr>
+<td>Dono do Produto</td>
+<td>Atualizar o escopo do produto, organizar o escopo das sprints, validar as entregas</td>
+<td>Vitor Araújo</td>
+<td>[cite_start]Flávia Rebelato [cite: 111]</td>
+</tr>
+<tr>
+<td>Analista de Qualidade</td>
+<td>Garantir a qualidade do produto, garantir o cumprimento do conceito de pronto, realizar inspeções de código</td>
+<td>Flávia Rebelato, Vitor Araújo</td>
+<td>[cite_start]Flávia Rebelato, Vitor Araújo [cite: 111]</td>
+</tr>
+<tr>
+<td>Cliente</td>
+<td>Validar os requisitos do sistema, fornecer feedback sobre as funcionalidades, avaliar se 0 produto atende às necessidades esperadas e participar das homologações e testes de aceitação.</td>
+<td>[cite_start]Flávia Rebelato</td>
+<td>[cite: 111]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cite_start23-planejamento-das-fases-eou-iteracoes-do-projeto-cite-115">[cite_start]2.3 Planejamento das Fases e/ou Iterações do Projeto [cite: 115]</h3>
+<p>[cite_start]O desenvolvimento do UnBilidade será estruturado em sprints com entregas graduais e incrementais ao longo do período estipulado com entrega continua de valor, seguindo a metodologia Scrum+XP. [cite: 116] [cite_start]O planejamento será atualizado conforme necessidade do grupo durante o desenvolvimento. [cite: 117]</p>
+<table>
+<thead>
+<tr>
+<th>Sprint</th>
+<th>Produto (Entrega)</th>
+<th>Data Início</th>
+<th>Entregável(eis)</th>
+<th>Data Fim</th>
+<th>Responsáveis</th>
+<th>% conclusão</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sprint 1</td>
+<td>Definição do Produto e Visão de Projeto</td>
+<td>23/04/26</td>
+<td>Documento de Visão De Projeto e Produto</td>
+<td>02/05/26</td>
+<td>Vitor Araújo, Flávia Rebelato, João Paulo</td>
+<td>[cite_start]100% [cite: 118]</td>
+</tr>
+<tr>
+<td>Sprint 2</td>
+<td>MVP e Arquitetura</td>
+<td>02/05/26</td>
+<td>Documento de Arquitetura v1.0; definição do ambiente de desenvolvimento; repositório configurado no GitHub</td>
+<td>16/05/26</td>
+<td>Pablo Antônio, João Vitor, Vitor Araújo</td>
+<td>[cite_start]30% [cite: 118]</td>
+</tr>
+<tr>
+<td>Sprint 3</td>
+<td>Funcionalidades A, B, C, D</td>
+<td>16/05/26</td>
+<td>RF01, RF02, RF03 (Cadastro, Autenticação e Calendário)</td>
+<td>23/05/26</td>
+<td>[cite_start]Brenda, Alexandre, Pedro, Thiago</td>
+<td>[cite: 118]</td>
+</tr>
+<tr>
+<td>Sprint 4</td>
+<td>Funcionalidades E, F e G</td>
+<td>23/05/26</td>
+<td>RF04 a RF07 (Agendamento, Lembretes e Cancelamento); Inspeções</td>
+<td>30/05/26</td>
+<td>[cite_start]Brenda, Alexandre, Pedro, Thiago</td>
+<td>[cite: 118]</td>
+</tr>
+<tr>
+<td>Sprint 5</td>
+<td>Funcionalidades H, I e J</td>
+<td>30/05/26</td>
+<td>RF08 a RF16 (Upload, Histórico, Evolução, Admin); Reparos</td>
+<td>20/06/26</td>
+<td>[cite_start]Time completo</td>
+<td>[cite: 118]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cite_start24-matriz-de-comunicacao-cite-121">[cite_start]2.4 Matriz de Comunicação [cite: 121]</h3>
+<p>[cite_start]A comunicação do grupo Hopper está organizada de forma com que o grupo tenha um bom desempenho, com acompanhamento de riscos, acompanhamento das atividades, validação das entregas e alinhamento entre os membros da equipe. [cite: 122] As formas de comunicação ficaram da seguinte forma:
+[cite_start]A equipe realizará uma reunião semanal, com a presença mandatória de todos os membros, incluindo o Scrum Master, PO e os outros membros. [cite: 124] [cite_start]Para uma comunicação mais direta e em tempo real usaremos as ferramentas disponíveis como o WhatsApp, Microsoft Teams e Discord. [cite: 125]</p>
+<table>
+<thead>
+<tr>
+<th>Descrição</th>
+<th>Área/ Envolvidos</th>
+<th>Periodicidade</th>
+<th>Produtos Gerados</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reunião geral de acompanhamento</td>
+<td>Equipe Completa</td>
+<td>Semanal</td>
+<td>[cite_start]Ata de reunião Atualização de status [cite: 128]</td>
+</tr>
+<tr>
+<td>Comunicação com o monitor</td>
+<td>Scrum Master, PO</td>
+<td>Conforme necessidade</td>
+<td>[cite_start]Relatório de status do projeto e esclarecimento de impedimentos [cite: 128]</td>
+</tr>
+<tr>
+<td>Alinhamento sobre critérios de aceite</td>
+<td>PO, Scrum Master, desenvolvedores</td>
+<td>Ao final de cada sprint</td>
+<td>[cite_start]Critérios definidos e documentados [cite: 128]</td>
+</tr>
+<tr>
+<td>Atualizações internas rápidas</td>
+<td>Toda a equipe</td>
+<td>Contínua (WhatsApp)</td>
+<td>[cite_start]Notificações, lembretes, decisões rápidas [cite: 128]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cite_start25-gerenciamento-de-riscos-cite-129">[cite_start]2.5 Gerenciamento de Riscos [cite: 129]</h3>
+<p>[cite_start]O gerenciamento de riscos do projeto Unbilidade tem como objetivo identificar antecipadamente situações que possam comprometer o andamento do desenvolvimento, a qualidade das entregas ou a experiência dos usuários finais pacientes e profissionais da clínica. [cite: 130] [cite_start]A equipe adotou uma abordagem preventiva, mapeando os principais riscos e definindo estratégias de mitigação (para evitar que ocorram) e de contingência (para o caso de se concretizarem). [cite: 131] [cite_start]A lista de riscos será revisada a cada sprint, sendo atualizada conforme novos riscos forem identificados ou o contexto do projeto evoluir. [cite: 132]</p>
+<h3 id="cite_start26-criterios-de-replanejamento-cite-133">[cite_start]2.6 Critérios de Replanejamento [cite: 133]</h3>
+<p>[cite_start]O replanejamento no projeto Unbilidade será realizado sempre que houver fatores que comprometam o andamento da sprint, a qualidade das entregas ou a aderência aos objetivos definidos no backlog. [cite: 134] [cite_start]A equipe utilizará como base o acompanhamento semanal, as revisões de sprint e a análise contínua dos riscos mapeados na seção 2.5 para identificar a necessidade de ajustes. [cite: 135]</p>
+<p>A seguir, são definidos os principais critérios que podem justificar um replanejamento:
+* [cite_start]Desistência, afastamento ou baixo engajamento de membros da equipe, impactando diretamente a capacidade de execução das tarefas planejadas para a sprint. [cite: 137]
+* [cite_start]Atrasos críticos na entrega de funcionalidades prioritárias, especialmente aquelas das quais outras partes do sistema dependem, como autenticação, calendário de agendamento e integração com o Supabase. [cite: 138]
+* [cite_start]Mudanças significativas no escopo propostas pelo Product Owner que afetem entregas em andamento ou já definidas para a sprint atual. [cite: 139]
+* [cite_start]Problemas técnicos ou de integração entre Next.js e Supabase que impeçam o avanço do desenvolvimento conforme previsto na arquitetura do sistema. [cite: 140]
+* [cite_start]Validações negativas durante testes, indicando que funcionalidades entregues não atendem aos critérios de aceite definidos junto ao Product Owner. [cite: 141]
+* [cite_start]Resultado insatisfatório nas inspeções de código realizadas pelo monitor, exigindo refatoração significativa que comprometa o cronograma das sprints seguintes. [cite: 142]</p>
+<h4 id="cite_start261-avaliando-grau-de-riscos-cite-145">[cite_start]2.6.1 Avaliando grau de riscos [cite: 145]</h4>
+<p>[cite_start]O grau de risco atribuído — baixo, médio ou alto — é definido por análise qualitativa, considerando a combinação entre a probabilidade de ocorrência e o impacto potencial caso o risco se concretize. [cite: 145] [cite_start]A avaliação é realizada por consenso entre os membros da equipe ao início de cada sprint, levando em conta o histórico de entregas, a complexidade das funcionalidades planejadas e a disponibilidade dos integrantes. [cite: 146]</p>
+<table>
+<thead>
+<tr>
+<th>Risco</th>
+<th>Grau</th>
+<th>Mitigação (Plano A)</th>
+<th>Contingência (Plano B)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Desistência ou afastamento de membro da equipe</td>
+<td>Alto</td>
+<td>[cite_start]Distribuição equilibrada de responsabilidades desde o início; nenhum módulo crítico com responsável único [cite: 151]</td>
+<td>[cite_start]Redistribuir tarefas entre os membros ativos; acionar o Scrum Master para replanejamento imediato da sprint [cite: 151]</td>
+</tr>
+<tr>
+<td>Atraso na entrega do documento de visão comprometendo o kick off</td>
+<td>Alto</td>
+<td>[cite_start]Divisão clara das seções entre os responsáveis desde a Sprint 1; revisões incrementais antes do prazo [cite: 152, 153]</td>
+<td>[cite_start]Priorizar as seções obrigatórias para entrega mínima no prazo e complementar na Sprint 2 [cite: 153]</td>
+</tr>
+<tr>
+<td>Falta de comunicação entre front-end, back end e DevOp</td>
+<td>Médio</td>
+<td>Daily assíncrona via canal do grupo; reunião semanal com ata registrada; [cite_start]Scrum Master como facilitador [cite: 154]</td>
+<td>[cite_start]Intervenção direta do Scrum Master para realinhar as equipes e revisar o plano da sprint em andamento [cite: 154]</td>
+</tr>
+<tr>
+<td>Atraso na entrega do back-end</td>
+<td>Alto</td>
+<td>[cite_start]Divisão clara por partes, versionamento incremental [cite: 154]</td>
+<td>[cite_start]Reduzir escopo ou mover funcionalidades para sprint futura [cite: 154]</td>
+</tr>
+<tr>
+<td>Alteração tardia de requisitos pelo Product Owner</td>
+<td>Alto</td>
+<td>[cite_start]Backlog refinado e priorizado antes de cada sprint com validação da PO; mudanças somente entre sprints [cite: 155]</td>
+<td>[cite_start]Repriorizar o backlog junto à PO, negociando o que entra e sai do escopo da sprint corrente [cite: 155]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="cite_start3-processo-de-desenvolvimento-de-software-cite-155">[cite_start]3. Processo de Desenvolvimento de Software [cite: 155]</h2>
+<p>[cite_start]O processo de desenvolvimento do projeto Hopper será guiado por uma abordagem ágil, fundamentada nos princípios do Scrum e nas práticas do Extreme Programming (XP). [cite: 155] [cite_start]A equipe adota a metodologia ScrumXP, combinação das práticas de gerenciamento do Scrum com as práticas técnicas do XP. [cite: 156] [cite_start]Essa escolha se justifica pelo contexto do projeto: equipe pequena, escopo dinâmico, prazo semestral definido e necessidade de entregas incrementais de valor a cada ciclo. [cite: 157]</p>
+<h3 id="cite_start31-scrum-adaptado-cite-159">[cite_start]3.1 Scrum Adaptado [cite: 159]</h3>
+<p>[cite_start]O framework Scrum foi escolhido como base para a organização das atividades, com ajustes conforme a dinâmica da equipe. [cite: 159] [cite_start]Os papéis clássicos estão representados, mas exercidos de forma colaborativa. [cite: 160] [cite_start]O processo se organiza em três macrofases encadeadas: pré-sprint, sprint e pós sprint. [cite: 161] </p>
+<p>[cite_start]Na fase de pré-sprint, a equipe realiza o planejamento da iteração a partir do Product Backlog priorizado pela PO. [cite: 162] [cite_start]Durante a sprint, o desenvolvimento segue as práticas do XP. [cite: 166] [cite_start]O Daily Scrum é realizado de forma assíncrona pelo canal da equipe. [cite: 167] [cite_start]Na fase de pós-sprint, a equipe realiza a Sprint Review com demonstração do incremento entregue para validação da PO, seguida da Retrospectiva. [cite: 169]</p>
+<h3 id="cite_start32-praticas-de-xp-incorporadas-cite-171">[cite_start]3.2 Práticas de XP Incorporadas [cite: 171]</h3>
+<p>Foram incorporadas práticas do Extreme Programming (XP) para garantir qualidade técnica e eficiência no desenvolvimento:
+* [cite_start]<strong>Desenvolvimento incremental:</strong> cada funcionalidade será implementada em partes pequenas e entregues gradualmente. [cite: 171]
+* [cite_start]<strong>Programação em pares:</strong> tarefas de maior complexidade técnica serão desenvolvidas em dupla. [cite: 172]
+* [cite_start]<strong>Refatoração contínua:</strong> o código será melhorado conforme surgirem oportunidades. [cite: 173]
+* [cite_start]<strong>Integração contínua:</strong> o repositório no GitHub será atualizado frequentemente. [cite: 174]
+* [cite_start]<strong>Feedback estruturado:</strong> a cada entrega de funcionalidade, o time realiza validações internas. [cite: 175]
+* [cite_start]<strong>Participação coletiva na documentação:</strong> os membros colaboram com a construção e atualização dos artefatos. [cite: 176]</p>
+<hr />
+<h2 id="cite_start4-declaracao-de-escopo-do-projeto-cite-180">[cite_start]4. Declaração de Escopo do Projeto [cite: 180]</h2>
+<p>[cite_start]O backlog do produto é uma lista de requisitos e funcionalidades que serão trabalhados pelo time. [cite: 180] [cite_start]Os requisitos e funcionalidades deverão ser entregues e validados de forma incremental. [cite: 181] [cite_start]Tendo em vista que o projeto Hopper tem como contexto uma clínica fictícia, o Product Owner e o Scrum Master desempenham juntos o papel de representantes do cliente. [cite: 182] </p>
+<h3 id="cite_start41-perfis-cite-204">[cite_start]4.1 Perfis [cite: 204]</h3>
+<p>[cite_start]Os perfis de acesso do Hopper foram definidos a partir de alinhamento entre os membros do grupo. [cite: 204] O sistema conta com quatro perfis principais:
+* <strong>Pacientes:</strong> Paciente com alguma necessidade de fisioterapia, que queira marcar uma consulta. [cite_start]Pode marcar, consultar prontuário, editar informações, cancelar, remarcar. [cite: 211]
+* <strong>Secretária:</strong> Responsável por deixar o retorno de pacientes marcado. [cite_start]Pode marcar, excluir, remarcar e consultar lista do dia. [cite: 212]
+* <strong>Médico/Fisioterapeuta:</strong> Informação de especialidade, breve biografia. [cite_start]Pode editar informações, consultar pacientes, remarcar. [cite: 212]
+* [cite_start]<strong>Administrador:</strong> Responsável por manter perfis, criar usuários, monitorar uso e gerenciar configurações. [cite: 211]</p>
+<h3 id="cite_start42-cenarios-cite-213">[cite_start]4.2 Cenários [cite: 213]</h3>
+<p>[cite_start]Os cenários funcionais definidos cobrem desde a configuração inicial até as operações do dia a dia. [cite: 213]</p>
+<table>
+<thead>
+<tr>
+<th>Numeração</th>
+<th>Nome do cenário</th>
+<th>Sprints (Descrição)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Autenticação e Cadastro</td>
+<td>[cite_start]Gestão de acesso para pacientes, fisioterapeutas e secretária, incluindo o formulário de novos pacientes. [cite: 220]</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Fluxo de Agendamento</td>
+<td>[cite_start]Visualização de calendário, escolha de tipo de atendimento, profissional e reserva temporária de 5 minutos. [cite: 221]</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Comunicação e Alertas</td>
+<td>[cite_start]Sistema automatizado de envio de e-mails para confirmação imediata e lembretes de 24 horas. [cite: 222]</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Gestão de Consultas</td>
+<td>[cite_start]Controle de cancelamentos (mínimo 24h), remarcações e prevenção de choque de horários. [cite: 223]</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Registro Clínico</td>
+<td>[cite_start]Funcionalidade de upload de laudos (PDF/JPG) e registro de evolução diária pelo fisioterapeuta. [cite: 224]</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Administração e Suporte</td>
+<td>[cite_start]Painel da secretária para gerir intervalos/folgas e seção de Perguntas Frequentes (FAQ). [cite: 225]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cite_start43-tabela-de-backlog-do-produto-cite-226">[cite_start]4.3 Tabela de Backlog do produto [cite: 226]</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Sprint</th>
+<th>Nome do Requisito</th>
+<th>Tipo</th>
+<th>Priorização</th>
+<th>Descrição Suscinta</th>
+<th>User Stories Associadas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RNF01</td>
+<td>2</td>
+<td>Segurança de Dados</td>
+<td>Não Funcional</td>
+<td>Must</td>
+<td>Garantir segurança e conformidade dos dados clínicos.</td>
+<td>[cite_start]- [cite: 226]</td>
+</tr>
+<tr>
+<td>RNF02</td>
+<td>2</td>
+<td>Usabilidade</td>
+<td>Não Funcional</td>
+<td>Must</td>
+<td>Interface limpa, objetiva e com cores acessíveis.</td>
+<td>[cite_start]- [cite: 227]</td>
+</tr>
+<tr>
+<td>RNF03</td>
+<td>2</td>
+<td>Disponibilidade</td>
+<td>Não Funcional</td>
+<td>Should</td>
+<td>Disponível via navegador web (Chrome, Firefox, Edge, Safari).</td>
+<td>[cite_start]- [cite: 228]</td>
+</tr>
+<tr>
+<td>RNF04</td>
+<td>2</td>
+<td>Desempenho</td>
+<td>Não Funcional</td>
+<td>Should</td>
+<td>Tempo de resposta de operações chave &lt; 3 segundos.</td>
+<td>[cite_start]- [cite: 229]</td>
+</tr>
+<tr>
+<td>RNF05</td>
+<td>2</td>
+<td>Deploy Contínuo</td>
+<td>Não Funcional</td>
+<td>Must</td>
+<td>Integração pipeline de deploy contínuo Vercel e GitHub Actions.</td>
+<td>[cite_start]- [cite: 230]</td>
+</tr>
+<tr>
+<td>RF01</td>
+<td>3</td>
+<td>Cadastro de Paciente</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>Permitir cadastro com dados obrigatórios e opcionais.</td>
+<td>[cite_start]US01 [cite: 231, 232]</td>
+</tr>
+<tr>
+<td>RF02</td>
+<td>3</td>
+<td>Autenticação de Usuários</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>Autenticar por e-mail e senha, com sessão segura.</td>
+<td>[cite_start]US02 [cite: 233, 234]</td>
+</tr>
+<tr>
+<td>RF03</td>
+<td>3</td>
+<td>Calendário Interativo</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>Exibir calendário com horários por serviço/profissional.</td>
+<td>[cite_start]US03 [cite: 235, 236]</td>
+</tr>
+<tr>
+<td>RF04</td>
+<td>4</td>
+<td>Agendamento de Consultas</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>Agendamento de consultas presenciais/domiciliares em até 5 etapas.</td>
+<td>[cite_start]US04 [cite: 237, 238]</td>
+</tr>
+<tr>
+<td>RF05</td>
+<td>4</td>
+<td>Fluxo de Primeira Consulta</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>Diferenciar agendamento para primeira consulta com dados extras.</td>
+<td>[cite_start]US05 [cite: 239, 240]</td>
+</tr>
+<tr>
+<td>RF06</td>
+<td>4</td>
+<td>Cancelamento e Remarcação</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>Permitir cancelamento/remarcação com &gt;24h de antecedência.</td>
+<td>[cite_start]US06 [cite: 241, 242]</td>
+</tr>
+<tr>
+<td>RF07</td>
+<td>4</td>
+<td>Lembrete Automático por E-mail</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>Enviar lembrete 24h antes da consulta.</td>
+<td>[cite_start]US07 [cite: 243, 244, 245]</td>
+</tr>
+<tr>
+<td>RF08</td>
+<td>5</td>
+<td>Upload de Documentos</td>
+<td>Funcional</td>
+<td>Should</td>
+<td>Permitir upload de laudos (PDF, JPG, PNG) até 10MB.</td>
+<td>[cite_start]US08 [cite: 247, 248]</td>
+</tr>
+<tr>
+<td>RF09</td>
+<td>5</td>
+<td>Histórico de Consultas</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>Exibir histórico de consultas na área do paciente.</td>
+<td>[cite_start]US09 [cite: 249, 250]</td>
+</tr>
+<tr>
+<td>RF10</td>
+<td>5</td>
+<td>Relatório de Evolução</td>
+<td>Funcional</td>
+<td>Should</td>
+<td>Fisioterapeuta registra evolução clínica após sessão.</td>
+<td>[cite_start]US10 [cite: 251, 252]</td>
+</tr>
+<tr>
+<td>RF11</td>
+<td>5</td>
+<td>Exibição de Serviços</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>Exibir serviços prestados (nome, descrição, indicações).</td>
+<td>[cite_start]US11 [cite: 253, 254]</td>
+</tr>
+<tr>
+<td>RF12</td>
+<td>5</td>
+<td>Exibição do Corpo Clínico</td>
+<td>Funcional</td>
+<td>Should</td>
+<td>Exibir profissionais (foto, CREFITO, especialidades).</td>
+<td>[cite_start]US12 [cite: 255, 256]</td>
+</tr>
+<tr>
+<td>RF13</td>
+<td>5</td>
+<td>Gestão de Horários (Admin)</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>Secretária/Admin cadastra e edita horários de profissionais.</td>
+<td>[cite_start]US13 [cite: 257, 258]</td>
+</tr>
+<tr>
+<td>RF14</td>
+<td>5</td>
+<td>Preferência de Profissional</td>
+<td>Funcional</td>
+<td>Should</td>
+<td>Paciente indica preferência ou atribuição automática.</td>
+<td>[cite_start]US14 [cite: 259, 260]</td>
+</tr>
+<tr>
+<td>RF15</td>
+<td>5</td>
+<td>Aviso de Encaminhamento</td>
+<td>Funcional</td>
+<td>Should</td>
+<td>Aviso sobre encaminhamento para convênios.</td>
+<td>[cite_start]US15 [cite: 261, 262]</td>
+</tr>
+<tr>
+<td>RF16</td>
+<td>5</td>
+<td>Reserva Temporária</td>
+<td>Funcional</td>
+<td>Must</td>
+<td>Reservar horário selecionado por até 5 min durante agendamento.</td>
+<td>[cite_start]US16 [cite: 263, 264, 265]</td>
+</tr>
+<tr>
+<td>RF17</td>
+<td>5</td>
+<td>FAQ de Dúvidas Frequentes</td>
+<td>Funcional</td>
+<td>Could</td>
+<td>Exibir FAQ.</td>
+<td>[cite_start]US17 [cite: 266, 267]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="cite_start5-metricas-e-medicoes-cite-268">[cite_start]5. Métricas e Medições [cite: 268]</h2>
+<p>[cite_start]As métricas e medições do projeto UnBilidade seguirão o método GQM (Goal Question-Metric). [cite: 268] [cite_start]Essa abordagem torna a visualização dos objetivos e o atingimento das métricas explícitos e rastreáveis. [cite: 269]</p>
+<ul>
+<li>[cite_start]<strong>Objetivo (Goal):</strong> Identificar proativamente situações que indicam a necessidade de replanejamento durante o desenvolvimento do UnBilidade. [cite: 270]</li>
+<li><strong>Perguntas (Questions):</strong> Participação balanceada? (Q1) Qualidade das entregas? (Q2) Distribuição de trabalho? (Q3) Entregas correspondem ao backlog? (Q4) [cite_start][cite: 271, 272, 273, 274]</li>
+<li><strong>Métricas:</strong> M1 (Presença, cumprimento de tarefas); M2 (Aceitação de testes, débito técnico); M3 (Distribuição de commits, tipo de atividade); [cite_start]M4 (Velocidade, Histórias não concluídas). [cite: 276-283]</li>
+<li>[cite_start]<strong>Coleta de Dados:</strong> Ocorrerá através do GitHub, Jira, Vitest/Supertest e Atas de Reunião, sob responsabilidade do Scrum Master. [cite: 284-288]</li>
+</ul>
+<hr />
+<h2 id="cite_start6-testes-de-software-cite-293">[cite_start]6. Testes de Software [cite: 293]</h2>
+<p>[cite_start]O plano de testes do projeto UnBilidade é fundamental para garantir a confiabilidade, segurança e a excepcional experiência de usuário prometida. [cite: 293]</p>
+<h3 id="cite_start61-estrategia-de-testes-cite-295">[cite_start]6.1 Estratégia de Testes [cite: 295]</h3>
+<p>[cite_start]A estratégia adotada combina pirâmide de testes clássica com a realidade de um projeto full-stack em Next.js. [cite: 295] [cite_start]O foco será em testes automatizados para acelerar o feedback e garantir a robustez do sistema. [cite: 296]
+* [cite_start]Automação Prioritária (agendamento, cancelamento). [cite: 297]
+* [cite_start]Ambiente Isolado (banco Supabase de homologação). [cite: 298]
+* [cite_start]Dados Controlados. [cite: 299]
+* [cite_start]Cobertura Mínima de 80%. [cite: 300]
+* [cite_start]Feedback Rápido (Pull Requests). [cite: 301]</p>
+<h3 id="cite_start62-niveis-e-tipos-de-teste-cite-302">[cite_start]6.2 Níveis e Tipos de Teste [cite: 302]</h3>
+<table>
+<thead>
+<tr>
+<th>Nível</th>
+<th>Descrição</th>
+<th>Ferramenta</th>
+<th>Exemplo no UnBilidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unitário</td>
+<td>Validam funções e métodos isolados.</td>
+<td>Vitest</td>
+<td>[cite_start]Verificar se a regra de "cancelamento com 24h" retorna true/false. [cite: 302, 303]</td>
+</tr>
+<tr>
+<td>Integração</td>
+<td>Validam a interação entre módulos (API Routes, Supabase).</td>
+<td>Supertest + Vitest</td>
+<td>[cite_start]Testar se rota valida horário ocupado. [cite: 304, 305]</td>
+</tr>
+<tr>
+<td>Sistema (E2E)</td>
+<td>Simulam o fluxo completo do usuário no navegador.</td>
+<td>Playwright ou Cypress</td>
+<td>[cite_start]"Paciente" loga, agenda, recebe email. [cite: 306, 307]</td>
+</tr>
+<tr>
+<td>Segurança</td>
+<td>Validam controle de acesso e proteção (LGPD).</td>
+<td>Manuais + Supertest</td>
+<td>[cite_start]Garantir que paciente não acesse histórico de outro. [cite: 308, 309]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cite_start63-roteiro-de-testes-exemplo-para-a-sprint-3-cite-310">[cite_start]6.3 Roteiro de Testes (Exemplo para a Sprint 3) [cite: 310]</h3>
+<p>[cite_start]<strong>Roteiro de Testes para Funcionalidades Core</strong> [cite: 311]</p>
+<table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Nome do Teste</th>
+<th>Tipo</th>
+<th>Nível</th>
+<th>RF Associado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TU-01</td>
+<td>Validação de e-mail e CPF</td>
+<td>Negativo</td>
+<td>Unitário</td>
+<td>[cite_start]RF01, RF02 [cite: 312]</td>
+</tr>
+<tr>
+<td>TU-02</td>
+<td>Cálculo de horário de lembrete</td>
+<td>Funcional</td>
+<td>Unitário</td>
+<td>[cite_start]RF07 [cite: 312]</td>
+</tr>
+<tr>
+<td>TI-01</td>
+<td>Cadastro de paciente com dados válidos</td>
+<td>Funcional</td>
+<td>Integração</td>
+<td>[cite_start]RF01 [cite: 312]</td>
+</tr>
+<tr>
+<td>TI-02</td>
+<td>Cadastro com e-mail duplicado</td>
+<td>Negativo</td>
+<td>Integração</td>
+<td>[cite_start]RF01 [cite: 313]</td>
+</tr>
+<tr>
+<td>TI-03</td>
+<td>Login com credenciais corretas</td>
+<td>Funcional</td>
+<td>Integração</td>
+<td>[cite_start]RF02 [cite: 313]</td>
+</tr>
+<tr>
+<td>TI-04</td>
+<td>Reserva de horário por 5 minutos</td>
+<td>Funcional</td>
+<td>Integração</td>
+<td>[cite_start]RF16 [cite: 313]</td>
+</tr>
+<tr>
+<td>TA-01</td>
+<td>Fluxo de agendamento de primeira consulta</td>
+<td>Funcional</td>
+<td>Sistema (E2E)</td>
+<td>[cite_start]RF04, RF05 [cite: 313]</td>
+</tr>
+<tr>
+<td>TA-02</td>
+<td>Cancelamento com antecedência &lt; 24h</td>
+<td>Negativo</td>
+<td>Sistema (E2E)</td>
+<td>[cite_start]RF06 [cite: 314]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Critérios de Aceitação dos Testes</strong></p>
+<table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Funcionalidade Associada</th>
+<th>Critério de Aceitação (Condição de Sucesso)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TU-01</td>
+<td>Validação de Cadastro</td>
+<td>[cite_start]O sistema deve rejeitar CPF inválido e e-mail sem formato correto, exibindo mensagem de erro amigável. [cite: 314, 315]</td>
+</tr>
+<tr>
+<td>TU-02</td>
+<td>Lembrete Automático</td>
+<td>[cite_start]A função que calcula a data/hora do envio deve retornar "24h antes" para agendamentos futuros, e "enviar agora" para &lt; 24h. [cite: 315]</td>
+</tr>
+<tr>
+<td>TI-01</td>
+<td>Cadastro de Paciente</td>
+<td>[cite_start]O sistema deve retornar status 201 (Criado) e o novo paciente deve persistir no Supabase. [cite: 316]</td>
+</tr>
+<tr>
+<td>TI-02</td>
+<td>Prevenção de Duplicidade</td>
+<td>[cite_start]O sistema deve retornar status 409 (Conflito) com a mensagem "E-mail já cadastrado". [cite: 317]</td>
+</tr>
+<tr>
+<td>TI-03</td>
+<td>Autenticação</td>
+<td>[cite_start]O sistema deve retornar status 200 e um token de sessão (JWT ou similar) válido. [cite: 318]</td>
+</tr>
+<tr>
+<td>TI-04</td>
+<td>Reserva de Horário</td>
+<td>[cite_start]Após a requisição, o horário deve ficar como "reservado" no banco de dados por 5 minutos. [cite: 319]</td>
+</tr>
+<tr>
+<td>TA-01</td>
+<td>Agendamento Completo</td>
+<td>[cite_start]Ao final do fluxo de 5 etapas, a consulta deve ser criada, e-mail de confirmação enviado, horário vai para "confirmado". [cite: 320]</td>
+</tr>
+<tr>
+<td>TA-02</td>
+<td>Cancelamento Restrito</td>
+<td>[cite_start]O sistema deve impedir o cancelamento, retornar erro visível e manter a consulta ativa. [cite: 321]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="cite_start7-referencias-bibliograficas-cite-322">[cite_start]7. Referências Bibliográficas [cite: 322]</h2>
+<ul>
+<li>BECK, Kent. Extreme Programming Explained: Embrace Change. 2. ed. [cite_start]Boston: Addison Wesley, 2004. [cite: 322]</li>
+<li>BRASIL. [cite_start]Lei nº 13.709, de 14 de agosto de 2018. Lei Geral de Proteção de Dados Pessoais (LGPD). [cite: 323]</li>
+<li>COHN, Mike. User Stories Applied: For Agile Software Development. [cite_start]Boston: Addison-Wesley, 2004. [cite: 324, 325]</li>
+<li>CONSELHO FEDERAL DE FISIOTERAPIA E TERAPIA OCUPACIONAL (COFFITO). [cite_start]Resolução nº 424. [cite: 325, 326]</li>
+<li>FOWLER, Martin. Refactoring: Improving the Design of Existing Code. 2. ed. [cite_start]Boston: Addison Wesley, 2018. [cite: 327, 328]</li>
+<li>GRUMAN, Galen. A Guide to Agile Development. [cite_start]InfoWorld, São Francisco, 2009. [cite: 328, 329]</li>
+<li>KITCHENHAM, Barbara; PFLEEGER, Shari Lawrence. [cite_start]Principles of Survey Research: Part 1. [cite: 329, 330]</li>
+<li>NIELSEN, Jakob; LORANGER, Hoa. Prioritizing Web Usability. [cite_start]Berkeley: New Riders, 2006. [cite: 331, 332]</li>
+<li>O'BRIEN, James A.; [cite_start]MARAKAS, George M. Administração de Sistemas de Informação. [cite: 332, 333]</li>
+<li>PRESSMAN, Roger S.; [cite_start]MAXIM, Bruce R. Engenharia de Software: Uma Abordagem Profissional. [cite: 333, 334]</li>
+<li>REZENDE, Denis Alcides. [cite_start]Planejamento de Sistemas de Informação e Informática. [cite: 334, 335]</li>
+<li>SCHWABER, Ken; SUTHERLAND, Jeff. [cite_start]The Scrum Guide. [cite: 335, 336]</li>
+<li>SOMMERVILLE, Ian. Engenharia de Software. 10. [cite_start]ed. [cite: 336, 337]</li>
+<li>WAZLAWICK, Raul Sidnei. Engenharia de Software: Conceitos e Práticas. [cite_start]Rio de Janeiro: Elsevier, 2013. [cite: 337]</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
