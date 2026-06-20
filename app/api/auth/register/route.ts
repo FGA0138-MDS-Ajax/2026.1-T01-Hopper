@@ -54,6 +54,11 @@ export async function POST(request: Request) {
       },
     })
 
+
+    console.log('DEBUG - error:', error)
+    console.log('DEBUG - data.user:', data.user)
+    console.log('DEBUG - identities:', data.user?.identities)
+
     /** e-mail já cadastrado: erro explícito ou usuário sem novas identidades */
     const emailJaCadastrado =
       error?.code === 'user_already_exists' ||
@@ -71,21 +76,34 @@ export async function POST(request: Request) {
       )
     }
 
-    /** cria o perfil do usuário na tabela profiles */
+  /**cria o perfil básico na tabela profiles */
     const { error: perfilError } = await supabase.from('profiles').insert({
       id: data.user.id,
       nome,
-      cpf,
-      telefone,
-      data_nascimento: dataNascimento,
-      endereco: endereco ?? null,
-      convenio: convenio ?? null,
+      email,
       role,
     })
 
     if (perfilError) {
       return NextResponse.json(
         { error: 'Usuário criado, mas houve falha ao criar o perfil' },
+        { status: 500 }
+      )
+    }
+
+    /**cria os dados específicos do paciente na tabela pacientes */
+    const { error: pacienteError } = await supabase.from('pacientes').insert({
+      id: data.user.id,
+      cpf,
+      telefone,
+      data_nascimento: dataNascimento,
+      endereco: endereco ?? null,
+      convenio: convenio ?? null,
+    })
+
+    if (pacienteError) {
+      return NextResponse.json(
+        { error: 'Perfil criado, mas houve falha ao salvar dados do paciente' },
         { status: 500 }
       )
     }
