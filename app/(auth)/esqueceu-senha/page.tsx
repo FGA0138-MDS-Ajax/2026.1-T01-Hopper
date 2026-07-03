@@ -9,11 +9,54 @@ export default function EsqueceuSenhaPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [codigo, setCodigo] = useState("");
+  const [carregando, setCarregando] = useState(false);
+  const [mensagem, setMensagem] = useState("");
+  const [erro, setErro] = useState("");
 
+  // Dispara o e-mail com o código OTP (rota que não vaza se o e-mail existe)
+  const handleEnviarCodigo = async () => {
+    setErro("");
+    setMensagem("");
+
+    if (!email) {
+      setErro("Informe seu e-mail para receber o código.");
+      return;
+    }
+
+    setCarregando(true);
+    try {
+      const res = await fetch("/api/auth/recuperar-senha", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        setErro(data.error ?? "Não foi possível enviar o código.");
+        return;
+      }
+
+      setMensagem(data.message ?? "Se o e-mail estiver cadastrado, enviamos um código.");
+    } catch {
+      setErro("Erro de conexão. Tente novamente.");
+    } finally {
+      setCarregando(false);
+    }
+  };
+
+  // Leva e-mail + código para a etapa de nova senha, onde o código é validado
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Como você cuida do front-end, o botão agora faz a navegação visual para a próxima etapa
+    setErro("");
+
+    if (!/^\d{6}$/.test(codigo)) {
+      setErro("O código deve ter 6 dígitos.");
+      return;
+    }
+
+    sessionStorage.setItem("recuperacao_email", email);
+    sessionStorage.setItem("recuperacao_codigo", codigo);
     router.push("/nova-senha");
   };
 
@@ -58,9 +101,22 @@ export default function EsqueceuSenhaPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full rounded-xl bg-[#F0F7F9] py-3 pl-11 pr-4 text-sm text-[#2D3748] placeholder-gray-400 outline-none transition-all focus:ring-2 focus:ring-[#3AAFA9]"
+                  className="w-full rounded-xl bg-[#F0F7F9] py-3 pl-11 pr-28 text-sm text-[#2D3748] placeholder-gray-400 outline-none transition-all focus:ring-2 focus:ring-[#3AAFA9]"
                 />
+                <button
+                  type="button"
+                  onClick={handleEnviarCodigo}
+                  disabled={carregando}
+                  className="absolute inset-y-0 right-0 my-1.5 mr-1.5 rounded-lg bg-[#2B7A78] px-3 text-xs font-semibold text-white transition-all hover:bg-[#3AAFA9] disabled:opacity-60"
+                >
+                  {carregando ? "Enviando..." : "Enviar código"}
+                </button>
               </div>
+
+              {mensagem && (
+                <p className="text-xs text-[#2B7A78]">{mensagem}</p>
+              )}
+              {erro && <p className="text-xs text-red-500">{erro}</p>}
 
               {/* Campo: Código de Verificação */}
               <div className="relative">
