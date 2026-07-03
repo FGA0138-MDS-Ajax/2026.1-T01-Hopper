@@ -17,3 +17,6 @@ GRANT SELECT ON reservas_temporarias TO service_role;
 
 -- Leitura pública de serviços
 GRANT SELECT ON servicos TO anon, authenticated;
+
+-- Leitura pública de fisioterapeutas
+GRANT SELECT ON fisioterapeutas TO anon, authenticated;
