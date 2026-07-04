@@ -23,6 +23,8 @@ import {
   Loader2,
 } from "lucide-react";
 import { Suspense, useEffect, useState } from "react";
+import { NextResponse } from "next/server";
+import { getAuthenticatedUser } from "@/lib/services/AuthService";
 
 // ─────────────────────────────────────────────────────────────
 // tipos
@@ -785,25 +787,22 @@ function ScheduleContent() {
 
   // Buscar serviços
     useEffect(() => {
-      async function load() {
-        setLoadServ(true);
-        try {
-          // 🔁 const res = await fetch("/api/services"); const data = await res.json();
-          await new Promise((r) => setTimeout(r, 600));
-          setServicos([
-            { id: "1", nome: "Fisioterapia Ortopédica",  descricao: "Reabilitação musculoesquelética", duracao: 50, icone: "🦴", categoria: "Ortopedia" },
-            { id: "2", nome: "Fisioterapia Neurológica", descricao: "Condições neurológicas",          duracao: 60, icone: "🧠", categoria: "Neurologia" },
-            { id: "3", nome: "Fisioterapia Respiratória",descricao: "Reabilitação pulmonar",           duracao: 45, icone: "🫁", categoria: "Respiratória" },
-            { id: "4", nome: "RPG",                      descricao: "Reeducação postural global",      duracao: 60, icone: "🧘", categoria: "Postura" },
-            { id: "5", nome: "Pilates Terapêutico",      descricao: "Fortalecimento e flexibilidade",  duracao: 50, icone: "💪", categoria: "Condicionamento" },
-            { id: "6", nome: "Acupuntura",               descricao: "Estimulação de pontos",           duracao: 40, icone: "🎯", categoria: "Complementar" },
-          ]);
-        } finally {
-          setLoadServ(false);
-        }
+    async function load() {
+      setLoadServ(true);
+      try {
+        const res = await fetch("/api/services");
+        if (!res.ok) throw new Error('Erro ao carregar serviços');
+        const data = await res.json();
+        setServicos(data);
+      } catch (err) {
+        console.error('Erro ao buscar serviços:', err);
+      } finally {
+        setLoadServ(false);
       }
-      load();
-    }, []);
+    }
+    load();
+  }, []);
+
 
   // Buscar profissionais quando chegar na etapa 3
   useEffect(() => {
@@ -811,13 +810,12 @@ function ScheduleContent() {
     async function load() {
       setLoadProf(true);
       try {
-        // 🔁 const res = await fetch(`/api/professionals?servico=${form.servicoId}`); ...
-        await new Promise((r) => setTimeout(r, 500));
-        setProfis([
-          { id: "p1", nome: "Dra. Fernanda Lima",  especialidade: "Fisioterapia Ortopédica e Esportiva" },
-          { id: "p2", nome: "Dr. Carlos Mendes",   especialidade: "Fisioterapia Neurológica" },
-          { id: "p3", nome: "Dra. Marina Costa",   especialidade: "Fisioterapia Respiratória e Pilates" },
-        ]);
+        const res = await fetch("/api/professionals");
+        if (!res.ok) throw new Error('Erro ao carregar profissionais');
+        const data = await res.json();
+        setProfis(data);
+      } catch (err) {
+        console.error('Erro ao buscar profissionais:', err);
       } finally {
         setLoadProf(false);
       }
@@ -825,31 +823,57 @@ function ScheduleContent() {
     load();
   }, [etapa]);
 
+
+  
   // Validação por etapa
   function etapaValida(): boolean {
     switch (etapa) {
       case 0: return form.tipo !== null && (form.tipo === "presencial" || form.endereco.trim().length > 5);
       case 1: return form.servicoId !== null;
-      case 2: return true; // profissionalId null = sem preferência, válido
+      case 2: return true; 
       case 3: return form.slot !== null;
       case 4: return !form.primeiraConsulta || form.queixaPrincipal.trim().length > 0;
       default: return false;
     }
+
+    
   }
+  
+
+  
+    
 
   async function handleConfirmar() {
     setSubmitErr(null);
     setSubmitting(true);
     try {
-      // 🔁 Real:
-      // const res = await fetch("/api/appointments", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({ ...form, pacienteId: "user-teste-123" }),
-      // });
-      // if (res.status === 409) { setSubmitErr("Este horário não está mais disponível. Escolha outra data."); setEtapa(3); return; }
-      // if (!res.ok) throw new Error();
-      await new Promise((r) => setTimeout(r, 1200));
+      const res = await fetch("/api/appointments", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fisioterapeuta_id: form.profissionalId,
+          servico_id: form.servicoId,
+          data_hora: `${form.slot?.data}T${form.slot?.hora}`,
+          tipo: form.tipo,
+          primeira_consulta: form.primeiraConsulta,
+          endereco: form.endereco,
+          
+          
+        }),
+      
+        
+      });
+
+     
+
+      if (res.status === 409) {
+        setSubmitErr("Este horário não está mais disponível. Escolha outra data.");
+        setEtapa(3);
+        return;
+      }
+
+      if (!res.ok) throw new Error();
       router.push("/dashboard?agendado=1");
     } catch {
       setSubmitErr("Erro ao confirmar agendamento. Tente novamente.");
@@ -857,7 +881,6 @@ function ScheduleContent() {
       setSubmitting(false);
     }
   }
-
   
 
 

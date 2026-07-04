@@ -1,134 +1,60 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { createClient } from "@supabase/supabase-js";
+import { getAuthenticatedUser, getAuthenticatedClient } from "@/lib/services/AuthService";
 import { SchedulingService } from "@/lib/services/SchedulingService";
-import { NotificationService } from "@/lib/services/NotificationService";
 
-const criarConsultaSchema = z
-  .object({
-    paciente_id:       z.string().min(1),
-    fisioterapeuta_id: z.string().min(1),
-    servico_id:        z.string().min(1),
-    data_hora:         z.string().datetime(),
-    tipo:              z.enum(["presencial", "domiciliar", "online"]),
-    primeira_consulta: z.boolean(),
-    endereco:          z.string().optional(),
-  })
-  .refine(
-    (data) =>
-      data.tipo !== "domiciliar" ||
-      (data.endereco && data.endereco.trim().length > 0),
-    {
-      message: "Endereço é obrigatório para consultas domiciliares",
-      path: ["endereco"],
-    }
-  );
-
-const notificationService = new NotificationService();
+const criarConsultaSchema = z.object({
+  fisioterapeuta_id: z.string().min(1),
+  servico_id: z.string().min(1),
+  data_hora: z.string(),
+  tipo: z.enum(["presencial", "domiciliar"]),
+  primeira_consulta: z.boolean(),
+  endereco: z.string().optional(),
+})
 
 export async function POST(request: Request) {
+  console.log("DEBUG - POST /api/appointments chamado")
+
+  const user = await getAuthenticatedUser()
+  console.log("DEBUG - user:", user)
+
+  if (!user) {
+    return NextResponse.json({ error: "Não autenticado" }, { status: 401 })
+  }
+
   try {
-    const authHeader = request.headers.get("authorization");
-    const token = authHeader?.replace("Bearer ", "");
+    const body = await request.json()
+    console.log("DEBUG - body recebido:", body)
 
-    if (!token) {
-      return NextResponse.json(
-        { error: "Token de autenticação não fornecido." },
-        { status: 401 }
-      );
-    }
-
-    const supabaseAuth = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        global: {
-          headers: { Authorization: `Bearer ${token}` },
-        },
-      }
-    );
-
-    const { data: { user }, error: authError } = await supabaseAuth.auth.getUser();
-    if (authError || !user) {
-      return NextResponse.json({ error: "Sessão inválida ou expirada." }, { status: 401 });
-    }
-
-    const body = await request.json();
-    const parseResult = criarConsultaSchema.safeParse(body);
-
+    const parseResult = criarConsultaSchema.safeParse(body)
     if (!parseResult.success) {
       return NextResponse.json(
-        {
-          error: "Dados inválidos",
-          detalhes: parseResult.error.flatten().fieldErrors,
-        },
+        { error: "Dados inválidos", detalhes: parseResult.error.flatten().fieldErrors },
         { status: 400 }
-      );
+      )
     }
 
-    const input = parseResult.data;
+    const input = parseResult.data
+    const supabaseClient = await getAuthenticatedClient()
+    const schedulingService = new SchedulingService(supabaseClient)
 
-    if (user.id !== input.paciente_id) {
-      return NextResponse.json(
-        { error: "Você só pode agendar consultas para a sua própria conta." },
-        { status: 403 }
-      );
-    }
+    const consulta = await schedulingService.scheduleAppointment({
+      paciente_id: user.id,
+      fisioterapeuta_id: input.fisioterapeuta_id,
+      servico_id: input.servico_id,
+      data_hora: input.data_hora,
+      tipo: input.tipo,
+      primeira_consulta: input.primeira_consulta,
+    })
 
-    const schedulingService = new SchedulingService(supabaseAuth);
-
-    let reserva;
-    try {
-      reserva = await schedulingService.criarReservaTemporaria(
-        input.fisioterapeuta_id,
-        input.paciente_id,
-        input.data_hora
-      );
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "";
-      if (msg === "HORARIO_INDISPONIVEL") {
-        return NextResponse.json(
-          { error: "Horário não está mais disponível. Por favor, escolha outro." },
-          { status: 409 }
-        );
-      }
-      throw err;
-    }
-
-    let consulta;
-    try {
-      consulta = await schedulingService.scheduleAppointment(input, reserva.id);
-    } catch (error) {
-      /* EXTREMA IMPORTÂNCIA: Garante o rollback da reserva caso a inserção da consulta falhe */
-      await supabaseAuth.from("reservas_temporarias").delete().eq("id", reserva.id);
-      throw error;
-    }
-
-    const [{ data: perfil }, { data: fisio }, { data: servico }] =
-      await Promise.all([
-        supabaseAuth.from("profiles").select("nome, email").eq("id", input.paciente_id).single(),
-        supabaseAuth.from("fisioterapeutas").select("nome").eq("id", input.fisioterapeuta_id).single(),
-        supabaseAuth.from("servicos").select("nome").eq("id", input.servico_id).single(),
-      ]);
-
-    if (perfil && fisio && servico && perfil.email) {
-      await notificationService.sendConfirmationEmail({
-        ...consulta,
-        paciente_nome:       perfil.nome,
-        paciente_email:      perfil.email,
-        fisioterapeuta_nome: fisio.nome,
-        servico_nome:        servico.nome,
-      });
-    }
-
-    return NextResponse.json(consulta, { status: 201 });
+    return NextResponse.json(consulta, { status: 201 })
 
   } catch (error: unknown) {
-    const msg = error instanceof Error ? error.message : "Erro desconhecido";
-    console.error("Erro ao criar agendamento:", msg);
+    const msg = error instanceof Error ? error.message : "Erro desconhecido"
+    console.error("Erro ao criar agendamento:", msg)
     return NextResponse.json(
       { error: "Erro interno ao criar agendamento." },
       { status: 500 }
-    );
+    )
   }
 }
