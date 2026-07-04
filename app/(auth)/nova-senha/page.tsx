@@ -1,35 +1,70 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function NovaSenhaPage() {
+  const router = useRouter();
   const [novaSenha, setNovaSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
+  const [email, setEmail] = useState("");
+  const [codigo, setCodigo] = useState("");
+  const [carregando, setCarregando] = useState(false);
+  const [erro, setErro] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Recupera e-mail + código vindos da etapa anterior (esqueceu-senha)
+  useEffect(() => {
+    const emailSalvo = sessionStorage.getItem("recuperacao_email") ?? "";
+    const codigoSalvo = sessionStorage.getItem("recuperacao_codigo") ?? "";
+
+    if (!emailSalvo || !codigoSalvo) {
+      // sem contexto de recuperação: volta para o início do fluxo
+      router.replace("/esqueceu-senha");
+      return;
+    }
+
+    setEmail(emailSalvo);
+    setCodigo(codigoSalvo);
+  }, [router]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErro("");
 
     if (novaSenha.length < 8) {
-      alert("A senha deve conter no mínimo 8 caracteres.");
+      setErro("A senha deve conter no mínimo 8 caracteres.");
       return;
     }
 
     if (novaSenha !== confirmarSenha) {
-      alert("As senhas não coincidem. Verifique e tente novamente.");
+      setErro("As senhas não coincidem. Verifique e tente novamente.");
       return;
     }
 
-    // Validação solicitada: impede que a senha redefinida seja igual à antiga simulada
-    // Nota: No front real com banco de dados, essa checagem será feita pela API.
-    const senhaAntigaSimulada = "12345678"; 
-    if (novaSenha === senhaAntigaSimulada) {
-      alert("A nova senha não pode ser igual à sua senha atual. Escolha uma combinação diferente por segurança.");
-      return;
-    }
+    setCarregando(true);
+    try {
+      const res = await fetch("/api/auth/redefinir-senha", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, codigo, novaSenha }),
+      });
+      const data = await res.json();
 
-    alert("Senha alterada com sucesso!");
+      if (!res.ok) {
+        setErro(data.error ?? "Não foi possível redefinir a senha.");
+        return;
+      }
+
+      sessionStorage.removeItem("recuperacao_email");
+      sessionStorage.removeItem("recuperacao_codigo");
+      router.push("/login");
+    } catch {
+      setErro("Erro de conexão. Tente novamente.");
+    } finally {
+      setCarregando(false);
+    }
   };
 
   return (
@@ -76,13 +111,16 @@ export default function NovaSenhaPage() {
                 />
               </div>
 
+              {erro && <p className="text-xs text-red-500">{erro}</p>}
+
               {/* Botão de Concluir */}
               <div className="pt-4 text-center">
                 <button
                   type="submit"
-                  className="w-full max-w-xs rounded-full bg-[#3AAFA9] py-3 font-semibold text-white shadow-md transition-all hover:bg-[#2B7A78] hover:shadow-lg active:scale-95"
+                  disabled={carregando}
+                  className="w-full max-w-xs rounded-full bg-[#3AAFA9] py-3 font-semibold text-white shadow-md transition-all hover:bg-[#2B7A78] hover:shadow-lg active:scale-95 disabled:opacity-60"
                 >
-                  REDEFINIR SENHA
+                  {carregando ? "REDEFININDO..." : "REDEFINIR SENHA"}
                 </button>
               </div>
             </form>
