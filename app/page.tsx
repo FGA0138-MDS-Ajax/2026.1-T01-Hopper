@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import {
   Calendar,
-  FileText,
   Mail,
   Users,
   ArrowRight,
@@ -56,7 +55,6 @@ export default function HomePage() {
 
   return (
     <div style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
-      {/* Header */}
       <header
         style={{
           position: "fixed",
@@ -128,7 +126,7 @@ export default function HomePage() {
                     fontSize: "14px",
                   }}
                 >
-                  Início
+                  Inicio
                 </a>
                 <a
                   href="#about"
@@ -222,7 +220,6 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Seção Principal (Hero) com layout no estilo da imagem */}
       <section
         id="home"
         style={{
@@ -233,10 +230,9 @@ export default function HomePage() {
           alignItems: "center",
           padding: isMobile ? "120px 20px 40px" : "100px 6% 40px",
           overflow: "hidden",
-          backgroundColor: "#f0f7f9", // Cor de fallback caso a imagem demore a carregar
+          backgroundColor: "#f0f7f9",
         }}
       >
-        {/* Espaço para a sua Imagem de Fundo em Tela Cheia */}
         <div
           style={{
             position: "absolute",
@@ -248,13 +244,12 @@ export default function HomePage() {
           }}
         >
           <Image
-            src="/imagens/hero-fisio.png" // Substitua pelo caminho da sua nova imagem de fundo
+            src="/imagens/hero-fisio.png"
             alt="Atendimento de fisioterapia"
             fill
             priority
             style={{ objectFit: "cover", objectPosition: "center 5%" }}
           />
-          {/* Película sutil para garantir que o menu superior fique legível se a imagem for muito clara/escura */}
           <div
             style={{
               position: "absolute",
@@ -267,14 +262,13 @@ export default function HomePage() {
           />
         </div>
 
-        {/* Card Flutuante à Esquerda */}
         <div
           style={{
             position: "relative",
             zIndex: 1,
             width: "100%",
             maxWidth: isMobile ? "100%" : "480px",
-            backgroundColor: "#e6f7f5", // Mantida a cor original da UnBemEstar
+            backgroundColor: "#e6f7f5",
             borderRadius: "36px",
             padding: isMobile ? "32px 24px" : "56px 48px",
             boxShadow: "0 20px 40px rgba(43,122,120,0.15)",
@@ -289,7 +283,7 @@ export default function HomePage() {
               fontWeight: 700,
             }}
           >
-            Cuidando de você com dedicação e carinho
+            Cuidando de voce com dedicacao e carinho
           </h1>
           <p
             style={{
@@ -299,7 +293,7 @@ export default function HomePage() {
               lineHeight: "1.6",
             }}
           >
-            Agende sua consulta de forma simples e rápida. Atendimento
+            Agende sua consulta de forma simples e rapida. Atendimento
             presencial ou domiciliar, com profissionais especializados.
           </p>
 
@@ -328,13 +322,12 @@ export default function HomePage() {
                 e.currentTarget.style.color = "#2B7A78";
               }}
             >
-              Começar agora <ArrowRight size={18} />
+              Comecar agora <ArrowRight size={18} />
             </button>
           </Link>
         </div>
       </section>
 
-      {/* Seção Sobre o UnBemEstar */}
       <section
         id="about"
         style={{
@@ -362,7 +355,7 @@ export default function HomePage() {
                 lineHeight: "1.3",
               }}
             >
-              Reabilitação movida por dedicação
+              Reabilitacao movida por dedicacao
             </h2>
             <p
               style={{
@@ -372,11 +365,11 @@ export default function HomePage() {
                 marginBottom: "0",
               }}
             >
-              O UnBemEstar nasceu para provar que a organização digital e o calor
+              O UnBemEstar nasceu para provar que a organizacao digital e o calor
               humano caminham juntos. Transformamos a antiga burocracia de marcar
-              consultas em uma experiência de pura clareza: nosso sistema mapeia
-              as disponibilidades da clínica em tempo real para que nossos
-              profissionais foquem 100% no que importa: a sua recuperação.
+              consultas em uma experiencia de pura clareza: nosso sistema mapeia
+              as disponibilidades da clinica em tempo real para que nossos
+              profissionais foquem 100% no que importa: a sua recuperacao.
             </p>
           </div>
 
@@ -422,7 +415,7 @@ export default function HomePage() {
               >
                 <Image
                   src="/imagens/sobre-2.png"
-                  alt="Cuidado e dedicação"
+                  alt="Cuidado e dedicacao"
                   fill
                   style={{ objectFit: "cover", objectPosition: "top" }}
                 />
@@ -438,7 +431,7 @@ export default function HomePage() {
               >
                 <Image
                   src="/imagens/sobre-3.png"
-                  alt="Recuperação e bem-estar"
+                  alt="Recuperacao e bem-estar"
                   fill
                   style={{ objectFit: "cover", objectPosition: "bottom" }}
                 />
@@ -448,7 +441,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Seção Funcionalidades */}
       <section
         id="features"
         style={{
@@ -465,7 +457,7 @@ export default function HomePage() {
             Funcionalidades
           </h2>
           <p style={{ color: "#64748b", marginBottom: "48px" }}>
-            Tudo que sua clínica precisa em um só lugar
+            Tudo que sua clinica precisa em um so lugar
           </p>
 
           <div
@@ -482,19 +474,14 @@ export default function HomePage() {
                 desc: "Pacientes agendam consultas 24/7",
               },
               {
-                Icon: FileText,
-                title: "Prontuário Digital",
-                desc: "Histórico clínico completo e seguro",
-              },
-              {
                 Icon: Mail,
-                title: "Lembretes Automáticos",
-                desc: "Notificações por e-mail 24h antes",
+                title: "Lembretes Automaticos",
+                desc: "Notificacoes por e-mail 24h antes",
               },
               {
                 Icon: Users,
                 title: "Multi-perfis",
-                desc: "Pacientes, fisioterapeutas e secretárias",
+                desc: "Pacientes, fisioterapeutas e secretarias",
               },
             ].map(({ Icon, title, desc }) => (
               <div
@@ -547,7 +534,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Seção de Depoimentos */}
       <section style={{ padding: "80px 32px" }}>
         <div
           style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}
@@ -569,12 +555,12 @@ export default function HomePage() {
               {
                 nome: "Maria S.",
                 texto:
-                  "Agendar minhas sessões ficou muito mais fácil, sem precisar mandar mensagem pra clínica.",
+                  "Agendar minhas sessoes ficou muito mais facil, sem precisar mandar mensagem pra clinica.",
               },
               {
-                nome: "João P.",
+                nome: "Joao P.",
                 texto:
-                  "O acompanhamento do histórico me ajudou a entender minha evolução no tratamento.",
+                  "O acompanhamento do historico me ajudou a entender minha evolucao no tratamento.",
               },
               {
                 nome: "Ana C.",
@@ -606,7 +592,7 @@ export default function HomePage() {
                     marginBottom: "16px",
                   }}
                 >
-                  “{dep.texto}”
+                  {dep.texto}
                 </p>
                 <p
                   style={{
@@ -624,7 +610,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Rodapé */}
       <footer
         style={{
           backgroundColor: "#2B7A78",
@@ -633,7 +618,7 @@ export default function HomePage() {
           textAlign: "center",
         }}
       >
-        <p>&copy; 2026 UnBemEstar — Todos os direitos reservados</p>
+        <p>&copy; 2026 UnBemEstar - Todos os direitos reservados</p>
 
         <div
           style={{
@@ -659,7 +644,7 @@ export default function HomePage() {
               e.currentTarget.style.color = "#cbd5e1";
             }}
           >
-            🌟 Conheça o time
+            Conheca o time
           </Link>
           <Link
             href="/login"
@@ -704,7 +689,7 @@ export default function HomePage() {
             color: "#cbd5e1",
           }}
         >
-          Desenvolvido por alunos da UnB — MDS 2026.1
+          Desenvolvido por alunos da UnB - MDS 2026.1
         </p>
       </footer>
     </div>

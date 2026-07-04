@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 export default function DashboardPage() {
@@ -68,7 +69,7 @@ export default function DashboardPage() {
       <aside style={{
         width: "240px",
         minHeight: "100vh",
-        backgroundColor: "#2B7A78",
+        background: "linear-gradient(to bottom, #2B7A78, #17252A)",
         padding: "24px 16px",
         display: "flex",
         flexDirection: "column",
@@ -77,9 +78,22 @@ export default function DashboardPage() {
         height: "100vh"
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "32px" }}>
-          <span style={{ fontSize: "28px" }}>🩺</span>
+          <div style={{
+            backgroundColor: "white",
+            borderRadius: "10px",
+            padding: "4px",
+            display: "flex"
+          }}>
+            <Image
+              src="/imagens/UnBemEstarLg1.png"
+              alt="Logo UnBemEstar"
+              width={36}
+              height={36}
+              style={{ borderRadius: "8px", objectFit: "contain" }}
+            />
+          </div>
           <div>
-            <h1 style={{ fontSize: "18px", fontWeight: "bold", color: "white", margin: 0 }}>
+            <h1 style={{ fontSize: "16px", fontWeight: "bold", color: "white", margin: 0 }}>
               Un<span style={{ fontWeight: "900" }}>Bem</span>Estar
             </h1>
             <p style={{ fontSize: "10px", color: "#8dd0c9", letterSpacing: "1px", margin: 0 }}>
@@ -88,46 +102,75 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <nav style={{ flex: 1 }}>
-          <Link href="/dashboard" style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            padding: "10px 12px",
-            borderRadius: "10px",
-            textDecoration: "none",
-            backgroundColor: "rgba(255,255,255,0.15)",
-            color: "white",
-            marginBottom: "4px"
-          }}>
-            <span>📊</span> Painel Principal
+        <nav style={{ flex: 1, display: "flex", flexDirection: "column", gap: "4px" }}>
+          <Link
+            href="/dashboard"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              padding: "12px 16px",
+              borderRadius: "12px",
+              textDecoration: "none",
+              backgroundColor: "#3AAFA9",
+              color: "white",
+              fontWeight: 600,
+              fontSize: "14px",
+              boxShadow: "0 4px 10px rgba(0,0,0,0.15)"
+            }}
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+              <rect x="14" y="14" width="7" height="7" rx="1" />
+            </svg>
+            Painel Principal
           </Link>
-          <Link href="/schedule" style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            padding: "10px 12px",
-            borderRadius: "10px",
-            textDecoration: "none",
-            color: "rgba(255,255,255,0.7)",
-            marginBottom: "4px"
-          }}>
-            <span>📅</span> Novo Agendamento
+
+          <Link
+            href="/schedule"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              padding: "12px 16px",
+              borderRadius: "12px",
+              textDecoration: "none",
+              color: "rgba(255,255,255,0.7)",
+              fontSize: "14px"
+            }}
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" />
+              <path d="M16 2v4M8 2v4M3 10h18" />
+            </svg>
+            Novo Agendamento
           </Link>
         </nav>
 
-        <Link href="/login" style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "10px",
-          padding: "10px 12px",
-          borderRadius: "10px",
-          textDecoration: "none",
-          color: "rgba(255,255,255,0.5)",
-          borderTop: "1px solid rgba(255,255,255,0.1)",
-          paddingTop: "16px"
-        }}>
-          <span>🚪</span> Sair
+        <Link
+          href="/login"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            padding: "12px 16px",
+            borderRadius: "12px",
+            textDecoration: "none",
+            color: "rgba(255,255,255,0.6)",
+            fontSize: "14px",
+            borderTop: "1px solid rgba(255,255,255,0.1)",
+            paddingTop: "20px",
+            marginTop: "8px"
+          }}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+            <path d="M16 17l5-5-5-5" />
+            <path d="M21 12H9" />
+          </svg>
+          Sair
         </Link>
       </aside>
 
@@ -154,10 +197,10 @@ export default function DashboardPage() {
           marginBottom: "32px"
         }}>
           {[
-            { label: "Próximas consultas", value: "2", icon: "📅", color: "#2B7A78" },
-            { label: "Sessões concluídas", value: "12", icon: "✅", color: "#155724" },
-            { label: "Cancelamentos", value: "1", icon: "❌", color: "#721c24" },
-            { label: "Próxima sessão", value: "2 dias", icon: "⏳", color: "#856404" },
+            { label: "Próximas consultas", value: "2", color: "#2B7A78" },
+            { label: "Sessões concluídas", value: "12", color: "#155724" },
+            { label: "Cancelamentos", value: "1", color: "#721c24" },
+            { label: "Próxima sessão", value: "2 dias", color: "#856404" },
           ].map((card) => (
             <div key={card.label} style={{
               backgroundColor: "white",
@@ -166,7 +209,6 @@ export default function DashboardPage() {
               boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
               border: "1px solid #e2e8f0"
             }}>
-              <div style={{ fontSize: "24px", marginBottom: "8px" }}>{card.icon}</div>
               <div style={{ fontSize: "26px", fontWeight: "bold", color: card.color }}>
                 {card.value}
               </div>
@@ -191,7 +233,7 @@ export default function DashboardPage() {
             alignItems: "center"
           }}>
             <h2 style={{ fontSize: "16px", fontWeight: "bold", color: "#2B7A78", margin: 0 }}>
-              📋 Próximas Consultas
+              Próximas Consultas
             </h2>
             <Link href="/schedule" style={{
               backgroundColor: "#3AAFA9",
@@ -259,7 +301,7 @@ export default function DashboardPage() {
             borderBottom: "1px solid #e2e8f0"
           }}>
             <h2 style={{ fontSize: "16px", fontWeight: "bold", color: "#2B7A78", margin: 0 }}>
-              📜 Histórico de Consultas
+              Histórico de Consultas
             </h2>
           </div>
           {historico.map((item, index) => {
