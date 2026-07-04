@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabaseClient'
 
+
+
 /** rota pública que retorna todos os serviços da clínica */
 export const revalidate = 3600
 
