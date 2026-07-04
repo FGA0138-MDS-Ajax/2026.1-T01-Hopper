@@ -1,9 +1,15 @@
 import { getSupabaseClient } from '../supabaseClient'
 import { getSupabaseAdmin } from '../supabaseAdmin'
 
+/** Repositório responsável pelas operações de agendamento no banco de dados */
 export class AppointmentRepository {
+  private supabase: SupabaseClient
 
-    /** busca horários disponíveis de um fisioterapeuta por data */
+  constructor(supabaseClient: SupabaseClient) {
+    this.supabase = supabaseClient
+  }
+
+  /** busca horários disponíveis de um fisioterapeuta por data */
   async findAvailableSlots(fisioterapeutaId: string, data: string) {
     const { data: slots, error } = await getSupabaseClient()
       .from('horarios_disponiveis')
@@ -15,7 +21,7 @@ export class AppointmentRepository {
     return slots
   }
 
-    /** esse irá criar um novo agendamento de consulta no banco de dados */
+  /** esse irá criar um novo agendamento de consulta no banco de dados */
   async createAppointment(appointment: {
     paciente_id: string
     fisioterapeuta_id: string
@@ -34,18 +40,25 @@ export class AppointmentRepository {
     return data
   }
 
-    /** busca todas as consultas de um paciente */
+  /** busca todas as consultas de um paciente, com dados do fisioterapeuta e serviço */
   async findAppointmentsByPatient(pacienteId: string) {
     const { data, error } = await getSupabaseClient()
       .from('consultas')
-      .select('*')
+      .select(`
+        id,
+        data_hora,
+        tipo,
+        status,
+        primeira_consulta,
+        fisioterapeutas ( nome, crefito ),
+        servicos ( nome )
+      `)
       .eq('paciente_id', pacienteId)
       .order('data_hora', { ascending: false })
 
     if (error) throw new Error(error.message)
     return data
   }
-
 
   /** cancela uma consulta pelo id do paciente */
   async cancelAppointment(consultaId: string) {
