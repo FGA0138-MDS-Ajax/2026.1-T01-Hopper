@@ -54,27 +54,17 @@ export default function HomePage() {
     };
   }, []);
 
-  const aboutFade = useFadeInOnScroll();
-  const featuresFade = useFadeInOnScroll();
-  const statsFade = useFadeInOnScroll();
-
-  function fadeStyle(visible: boolean): React.CSSProperties {
-    return {
-      opacity: visible ? 1 : 0,
-      transform: visible ? "translateY(0)" : "translateY(24px)",
-      transition: "opacity 0.6s ease, transform 0.6s ease",
-    };
-  }
-
   return (
     <div style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
+      {/* Header */}
       <header
         style={{
           position: "fixed",
           top: 0,
           left: 0,
           right: 0,
-          backgroundColor: scrolled ? "white" : "transparent",
+          backgroundColor: scrolled ? "white" : "rgba(255, 255, 255, 0.9)",
+          backdropFilter: "blur(8px)",
           boxShadow: scrolled ? "0 2px 10px rgba(0,0,0,0.08)" : "none",
           transition: "all 0.3s ease",
           zIndex: 1000,
@@ -232,11 +222,124 @@ export default function HomePage() {
         </div>
       </header>
 
+      {/* Seção Principal (Hero) com layout no estilo da imagem */}
       <section
         id="home"
         style={{
-          padding: isMobile ? "120px 20px 60px" : "140px 32px 80px",
-          background: "linear-gradient(135deg, #f0f7f9 0%, #ffffff 100%)",
+          position: "relative",
+          width: "100%",
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          padding: isMobile ? "120px 20px 40px" : "100px 6% 40px",
+          overflow: "hidden",
+          backgroundColor: "#f0f7f9", // Cor de fallback caso a imagem demore a carregar
+        }}
+      >
+        {/* Espaço para a sua Imagem de Fundo em Tela Cheia */}
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 0,
+          }}
+        >
+          <Image
+            src="/imagens/hero-fisio.png" // Substitua pelo caminho da sua nova imagem de fundo
+            alt="Atendimento de fisioterapia"
+            fill
+            priority
+            style={{ objectFit: "cover", objectPosition: "center 5%" }}
+          />
+          {/* Película sutil para garantir que o menu superior fique legível se a imagem for muito clara/escura */}
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              backgroundColor: "rgba(0, 0, 0, 0.1)",
+            }}
+          />
+        </div>
+
+        {/* Card Flutuante à Esquerda */}
+        <div
+          style={{
+            position: "relative",
+            zIndex: 1,
+            width: "100%",
+            maxWidth: isMobile ? "100%" : "480px",
+            backgroundColor: "#e6f7f5", // Mantida a cor original da UnBemEstar
+            borderRadius: "36px",
+            padding: isMobile ? "32px 24px" : "56px 48px",
+            boxShadow: "0 20px 40px rgba(43,122,120,0.15)",
+          }}
+        >
+          <h1
+            style={{
+              fontSize: isMobile ? "32px" : "44px",
+              color: "#2B7A78",
+              marginBottom: "20px",
+              lineHeight: "1.15",
+              fontWeight: 700,
+            }}
+          >
+            Cuidando de você com dedicação e carinho
+          </h1>
+          <p
+            style={{
+              fontSize: isMobile ? "15px" : "16px",
+              color: "#3f6664",
+              marginBottom: "36px",
+              lineHeight: "1.6",
+            }}
+          >
+            Agende sua consulta de forma simples e rápida. Atendimento
+            presencial ou domiciliar, com profissionais especializados.
+          </p>
+
+          <Link href="/register" style={{ textDecoration: "none" }}>
+            <button
+              style={{
+                padding: "14px 32px",
+                backgroundColor: "transparent",
+                color: "#2B7A78",
+                border: "1.5px solid #2B7A78",
+                borderRadius: "30px",
+                fontSize: "15px",
+                fontWeight: "600",
+                cursor: "pointer",
+                transition: "all 0.2s",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "#2B7A78";
+                e.currentTarget.style.color = "white";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "transparent";
+                e.currentTarget.style.color = "#2B7A78";
+              }}
+            >
+              Começar agora <ArrowRight size={18} />
+            </button>
+          </Link>
+        </div>
+      </section>
+
+      {/* Seção Sobre o UnBemEstar */}
+      <section
+        id="about"
+        style={{
+          padding: "96px 32px",
+          backgroundColor: "#ffffff",
         }}
       >
         <div
@@ -245,175 +348,120 @@ export default function HomePage() {
             margin: "0 auto",
             display: "grid",
             gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-            gap: isMobile ? "32px" : "48px",
+            gap: "48px",
             alignItems: "center",
           }}
         >
-          <div>
-            <h1
+          <div style={{ textAlign: isMobile ? "center" : "left" }}>
+            <h2
               style={{
-                fontSize: isMobile ? "32px" : "48px",
+                fontSize: isMobile ? "28px" : "36px",
                 color: "#2B7A78",
-                marginBottom: "20px",
-                lineHeight: "1.2",
+                marginBottom: "24px",
+                fontWeight: 700,
+                lineHeight: "1.3",
               }}
             >
-              Gestão inteligente para clínicas de fisioterapia
-            </h1>
+              Reabilitação movida por dedicação
+            </h2>
             <p
               style={{
-                fontSize: "18px",
                 color: "#64748b",
-                marginBottom: "32px",
-                lineHeight: "1.6",
+                lineHeight: "1.8",
+                fontSize: "17px",
+                marginBottom: "0",
               }}
             >
-              Agende consultas, gerencie prontuários e automatize lembretes —
-              tudo em um só lugar.
+              O UnBemEstar nasceu para provar que a organização digital e o calor
+              humano caminham juntos. Transformamos a antiga burocracia de marcar
+              consultas em uma experiência de pura clareza: nosso sistema mapeia
+              as disponibilidades da clínica em tempo real para que nossos
+              profissionais foquem 100% no que importa: a sua recuperação.
             </p>
-            <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-              <Link href="/register">
-                <button
-                  style={{
-                    padding: "14px 32px",
-                    backgroundColor: "#2B7A78",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "40px",
-                    fontSize: "16px",
-                    cursor: "pointer",
-                    transition: "all 0.2s",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#3AAFA9";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "#2B7A78";
-                  }}
-                >
-                  Começar agora <ArrowRight size={18} />
-                </button>
-              </Link>
-              <Link href="/schedule">
-                <button
-                  style={{
-                    padding: "14px 32px",
-                    backgroundColor: "transparent",
-                    color: "#2B7A78",
-                    border: "2px solid #2B7A78",
-                    borderRadius: "40px",
-                    fontSize: "16px",
-                    cursor: "pointer",
-                    transition: "all 0.2s",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#2B7A78";
-                    e.currentTarget.style.color = "white";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "transparent";
-                    e.currentTarget.style.color = "#2B7A78";
-                  }}
-                >
-                  Ver calendário
-                </button>
-              </Link>
-            </div>
           </div>
 
           <div
             style={{
-              backgroundColor: "#f0f7f9",
-              borderRadius: "24px",
-              padding: "40px",
-              textAlign: "center",
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "16px",
+              alignItems: "center",
             }}
           >
-            <Calendar size={72} color="#2B7A78" strokeWidth={1.5} />
-            <p style={{ marginTop: "16px", color: "#2B7A78", fontSize: "18px" }}>
-              Agendamento simplificado
-            </p>
+            <div
+              style={{
+                position: "relative",
+                height: "260px",
+                borderRadius: "24px",
+                overflow: "hidden",
+                boxShadow: "0 8px 24px rgba(43,122,120,0.12)",
+              }}
+            >
+              <Image
+                src="/imagens/sobre-1.png"
+                alt="Atendimento humanizado"
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "16px",
+              }}
+            >
+              <div
+                style={{
+                  position: "relative",
+                  height: "150px",
+                  borderRadius: "24px",
+                  overflow: "hidden",
+                  boxShadow: "0 8px 24px rgba(43,122,120,0.12)",
+                }}
+              >
+                <Image
+                  src="/imagens/sobre-2.png"
+                  alt="Cuidado e dedicação"
+                  fill
+                  style={{ objectFit: "cover", objectPosition: "top" }}
+                />
+              </div>
+              <div
+                style={{
+                  position: "relative",
+                  height: "150px",
+                  borderRadius: "24px",
+                  overflow: "hidden",
+                  boxShadow: "0 8px 24px rgba(43,122,120,0.12)",
+                }}
+              >
+                <Image
+                  src="/imagens/sobre-3.png"
+                  alt="Recuperação e bem-estar"
+                  fill
+                  style={{ objectFit: "cover", objectPosition: "bottom" }}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section
-        ref={statsFade.ref}
-        style={{
-          padding: "48px 32px",
-          backgroundColor: "#2B7A78",
-          ...fadeStyle(statsFade.visible),
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1000px",
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
-            gap: "24px",
-            textAlign: "center",
-          }}
-        >
-          {[
-            { numero: "500+", label: "Pacientes atendidos" },
-            { numero: "98%", label: "Satisfação" },
-            { numero: "24/7", label: "Agendamento online" },
-            { numero: "12", label: "Clínicas parceiras" },
-          ].map((item) => (
-            <div key={item.label}>
-              <p style={{ fontSize: "30px", fontWeight: "800", color: "white", margin: 0 }}>
-                {item.numero}
-              </p>
-              <p style={{ fontSize: "13px", color: "#cbd5e1", margin: "4px 0 0" }}>
-                {item.label}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section
-        id="about"
-        ref={aboutFade.ref}
-        style={{ padding: "80px 32px", ...fadeStyle(aboutFade.visible) }}
-      >
-        <div style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
-          <h2 style={{ fontSize: "32px", color: "#2B7A78", marginBottom: "16px" }}>
-            Sobre o UnBemEstar
-          </h2>
-          <p
-            style={{
-              color: "#64748b",
-              maxWidth: "800px",
-              margin: "0 auto",
-              lineHeight: "1.7",
-              fontSize: "17px",
-            }}
-          >
-            O UnBemEstar é uma plataforma web desenvolvida para automatizar e
-            centralizar a gestão de clínicas de fisioterapia. Nosso objetivo é
-            eliminar processos manuais e reduzir a dependência de aplicativos de
-            mensagem, oferecendo uma experiência profissional e eficiente para
-            pacientes e gestores.
-          </p>
-        </div>
-      </section>
-
+      {/* Seção Funcionalidades */}
       <section
         id="features"
-        ref={featuresFade.ref}
         style={{
           padding: "80px 32px",
           backgroundColor: "#f0f7f9",
-          ...fadeStyle(featuresFade.visible),
         }}
       >
-        <div style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
-          <h2 style={{ fontSize: "32px", color: "#2B7A78", marginBottom: "16px" }}>
+        <div
+          style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}
+        >
+          <h2
+            style={{ fontSize: "32px", color: "#2B7A78", marginBottom: "16px" }}
+          >
             Funcionalidades
           </h2>
           <p style={{ color: "#64748b", marginBottom: "48px" }}>
@@ -428,10 +476,26 @@ export default function HomePage() {
             }}
           >
             {[
-              { Icon: Calendar, title: "Agendamento Online", desc: "Pacientes agendam consultas 24/7" },
-              { Icon: FileText, title: "Prontuário Digital", desc: "Histórico clínico completo e seguro" },
-              { Icon: Mail, title: "Lembretes Automáticos", desc: "Notificações por e-mail 24h antes" },
-              { Icon: Users, title: "Multi-perfis", desc: "Pacientes, fisioterapeutas e secretárias" },
+              {
+                Icon: Calendar,
+                title: "Agendamento Online",
+                desc: "Pacientes agendam consultas 24/7",
+              },
+              {
+                Icon: FileText,
+                title: "Prontuário Digital",
+                desc: "Histórico clínico completo e seguro",
+              },
+              {
+                Icon: Mail,
+                title: "Lembretes Automáticos",
+                desc: "Notificações por e-mail 24h antes",
+              },
+              {
+                Icon: Users,
+                title: "Multi-perfis",
+                desc: "Pacientes, fisioterapeutas e secretárias",
+              },
             ].map(({ Icon, title, desc }) => (
               <div
                 key={title}
@@ -443,11 +507,13 @@ export default function HomePage() {
                   transition: "all 0.2s",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.08)";
+                  e.currentTarget.style.boxShadow =
+                    "0 8px 20px rgba(0,0,0,0.08)";
                   e.currentTarget.style.transform = "translateY(-4px)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.04)";
+                  e.currentTarget.style.boxShadow =
+                    "0 2px 8px rgba(0,0,0,0.04)";
                   e.currentTarget.style.transform = "translateY(0)";
                 }}
               >
@@ -465,7 +531,13 @@ export default function HomePage() {
                 >
                   <Icon size={26} color="#2B7A78" strokeWidth={1.8} />
                 </div>
-                <h3 style={{ marginTop: "16px", color: "#2B7A78", fontSize: "18px" }}>
+                <h3
+                  style={{
+                    marginTop: "16px",
+                    color: "#2B7A78",
+                    fontSize: "18px",
+                  }}
+                >
                   {title}
                 </h3>
                 <p style={{ color: "#64748b", fontSize: "14px" }}>{desc}</p>
@@ -475,9 +547,14 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Seção de Depoimentos */}
       <section style={{ padding: "80px 32px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
-          <h2 style={{ fontSize: "32px", color: "#2B7A78", marginBottom: "48px" }}>
+        <div
+          style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}
+        >
+          <h2
+            style={{ fontSize: "32px", color: "#2B7A78", marginBottom: "48px" }}
+          >
             O que dizem nossos pacientes
           </h2>
 
@@ -489,9 +566,21 @@ export default function HomePage() {
             }}
           >
             {[
-              { nome: "Maria S.", texto: "Agendar minhas sessões ficou muito mais fácil, sem precisar mandar mensagem pra clínica." },
-              { nome: "João P.", texto: "O acompanhamento do histórico me ajudou a entender minha evolução no tratamento." },
-              { nome: "Ana C.", texto: "Os lembretes por e-mail evitaram que eu esquecesse consultas importantes." },
+              {
+                nome: "Maria S.",
+                texto:
+                  "Agendar minhas sessões ficou muito mais fácil, sem precisar mandar mensagem pra clínica.",
+              },
+              {
+                nome: "João P.",
+                texto:
+                  "O acompanhamento do histórico me ajudou a entender minha evolução no tratamento.",
+              },
+              {
+                nome: "Ana C.",
+                texto:
+                  "Os lembretes por e-mail evitaram que eu esquecesse consultas importantes.",
+              },
             ].map((dep) => (
               <div
                 key={dep.nome}
@@ -502,15 +591,31 @@ export default function HomePage() {
                   textAlign: "left",
                 }}
               >
-                <div style={{ display: "flex", gap: "2px", marginBottom: "12px" }}>
+                <div
+                  style={{ display: "flex", gap: "2px", marginBottom: "12px" }}
+                >
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star key={i} size={16} color="#3AAFA9" fill="#3AAFA9" />
                   ))}
                 </div>
-                <p style={{ color: "#475569", fontSize: "14px", lineHeight: "1.6", marginBottom: "16px" }}>
+                <p
+                  style={{
+                    color: "#475569",
+                    fontSize: "14px",
+                    lineHeight: "1.6",
+                    marginBottom: "16px",
+                  }}
+                >
                   “{dep.texto}”
                 </p>
-                <p style={{ color: "#2B7A78", fontWeight: "600", fontSize: "14px", margin: 0 }}>
+                <p
+                  style={{
+                    color: "#2B7A78",
+                    fontWeight: "600",
+                    fontSize: "14px",
+                    margin: 0,
+                  }}
+                >
                   {dep.nome}
                 </p>
               </div>
@@ -519,46 +624,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section
-        style={{
-          padding: "64px 32px",
-          background: "linear-gradient(135deg, #2B7A78 0%, #3AAFA9 100%)",
-          textAlign: "center",
-        }}
-      >
-        <h2 style={{ color: "white", fontSize: "28px", marginBottom: "12px" }}>
-          Pronto para modernizar sua clínica?
-        </h2>
-        <p style={{ color: "rgba(255,255,255,0.85)", marginBottom: "28px", fontSize: "16px" }}>
-          Cadastre-se gratuitamente e comece a usar em poucos minutos.
-        </p>
-        <Link href="/register">
-          <button
-            style={{
-              padding: "14px 36px",
-              backgroundColor: "white",
-              color: "#2B7A78",
-              border: "none",
-              borderRadius: "40px",
-              fontSize: "16px",
-              fontWeight: "600",
-              cursor: "pointer",
-              transition: "all 0.2s",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-2px)";
-              e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.15)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "none";
-            }}
-          >
-            Cadastrar minha clínica
-          </button>
-        </Link>
-      </section>
-
+      {/* Rodapé */}
       <footer
         style={{
           backgroundColor: "#2B7A78",

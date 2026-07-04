@@ -1,5 +1,7 @@
-// TODO: implementar a tela de dashboard. Placeholder para que o arquivo seja
-// um módulo válido (page.tsx exige um export default) e o build passe.
 export default function DashboardPage() {
-  return null;
+  return (
+    <div>
+      <h1>Dashboard</h1>
+    </div>
+  )
 }
