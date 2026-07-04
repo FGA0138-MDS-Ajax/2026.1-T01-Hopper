@@ -1,87 +1,97 @@
-import { Resend } from "resend";
-import { Consulta } from "../../types";
+import { Resend } from 'resend'
+import {
+  APPOINTMENT_REMINDER_SUBJECT,
+  buildAppointmentReminderHtml,
+  type AppointmentReminderData,
+} from '../emails/appointmentReminderTemplate'
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+/** parâmetros da primitiva de envio de e-mail */
+export interface SendEmailParams {
+  to: string
+  subject: string
+  html: string
+}
 
-/** serviço responsável pelo envio de notificações por e-mail */
+/** resultado de um envio individual — nunca lança, sempre retorna o status */
+export interface SendResult {
+  to: string
+  success: boolean
+  /** id retornado pelo Resend em caso de sucesso */
+  id?: string
+  /** mensagem de erro em caso de falha */
+  error?: string
+}
+
+const resendApiKey = process.env.RESEND_API_KEY!
+const emailFrom = process.env.EMAIL_FROM!
+
+/**
+ * Serviço responsável pelo envio de notificações por e-mail (RF07).
+ *
+ * É um wrapper fino sobre o Resend e é agnóstico de cron: expõe uma primitiva
+ * genérica (`sendEmail`) e helpers de alto nível por tipo de notificação
+ * (`sendAppointmentReminder`).
+ */
 export class NotificationService {
+  private readonly apiKey: string
+  private readonly from: string
+  /**
+   * Cliente Resend criado de forma lazy: instanciar `new Resend()` no construtor
+   * faria o `next build` lançar "Missing API key" ao importar o route (que cria
+   * o service no topo do módulo) sem as variáveis de ambiente. A key só é
+   * necessária em runtime, quando um e-mail é de fato enviado.
+   */
+  private resend: Resend | null = null
+
+  constructor(apiKey: string = resendApiKey, from: string = emailFrom) {
+    this.apiKey = apiKey
+    this.from = from
+  }
+
+  private getResend(): Resend {
+    if (!this.resend) {
+      this.resend = new Resend(this.apiKey)
+    }
+    return this.resend
+  }
 
   /**
-   * Envia e-mail de confirmação de agendamento ao paciente (RF07)
+   * Primitiva base de envio de e-mail. Não lança em falha de envio individual:
+   * retorna um `SendResult` para que um e-mail ruim não derrube um lote inteiro.
    */
-  async sendConfirmationEmail(
-    consulta: Consulta & {
-      paciente_nome: string;
-      paciente_email: string;
-      fisioterapeuta_nome: string;
-      servico_nome: string;
-    }
-  ) {
-    const dataFormatada = new Date(consulta.data_hora).toLocaleString("pt-BR", {
-      dateStyle: "long",
-      timeStyle: "short",
-      timeZone: "America/Sao_Paulo",
-    });
+  async sendEmail({ to, subject, html }: SendEmailParams): Promise<SendResult> {
+    try {
+      const { data, error } = await this.getResend().emails.send({
+        from: this.from,
+        to,
+        subject,
+        html,
+      })
 
-    const { error } = await resend.emails.send({
-      from: "UnBemEstar <noreply@unbemestar.com>",
-      to: consulta.paciente_email,
-      subject: `✅ Consulta confirmada — ${dataFormatada}`,
-      html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 24px;">
-          <h2 style="color: #1a7a4a;">Consulta confirmada!</h2>
-          <p>Olá, <strong>${consulta.paciente_nome}</strong>. Seu agendamento foi realizado com sucesso.</p>
-          <div style="background: #f0faf4; padding: 16px; border-radius: 8px; margin: 16px 0; border-left: 4px solid #1a7a4a;">
-            <p style="margin: 4px 0;"><strong>📅 Data e hora:</strong> ${dataFormatada}</p>
-            <p style="margin: 4px 0;"><strong>👨‍⚕️ Profissional:</strong> ${consulta.fisioterapeuta_nome}</p>
-            <p style="margin: 4px 0;"><strong>💆 Serviço:</strong> ${consulta.servico_nome}</p>
-            <p style="margin: 4px 0;"><strong>📍 Tipo:</strong> ${consulta.tipo}</p>
-            ${consulta.endereco ? `<p style="margin: 4px 0;"><strong>🏠 Endereço:</strong> ${consulta.endereco}</p>` : ""}
-          </div>
-          <p>Caso precise cancelar ou remarcar, acesse a plataforma com antecedência.</p>
-          <p style="color: #888; font-size: 12px; margin-top: 24px;">UnBemEstar — Clínica de Fisioterapia</p>
-        </div>
-      `,
-    });
+      if (error) {
+        return { to, success: false, error: error.message }
+      }
 
-    if (error) {
-      console.error("Erro ao enviar e-mail de confirmação:", error.message);
+      return { to, success: true, id: data?.id }
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Erro desconhecido ao enviar e-mail'
+      return { to, success: false, error: message }
     }
   }
 
   /**
-   * Envia lembrete de consulta 24h antes (chamado pelo cron — RF07)
+   * Monta e envia o lembrete de consulta para um paciente.
+   * Reaproveita `sendEmail`, então também não lança em falha individual.
    */
-  async enviarLembrete(dados: {
-    emailPaciente: string;
-    nomePaciente: string;
-    nomeFisioterapeuta: string;
-    dataHora: string;
-  }) {
-    const dataFormatada = new Date(dados.dataHora).toLocaleString("pt-BR", {
-      dateStyle: "long",
-      timeStyle: "short",
-      timeZone: "America/Sao_Paulo",
-    });
+  async sendAppointmentReminder(
+    params: { to: string } & AppointmentReminderData
+  ): Promise<SendResult> {
+    const { to, ...reminderData } = params
 
-    const { error } = await resend.emails.send({
-      from: "UnBemEstar <noreply@unbemestar.com>",
-      to: dados.emailPaciente,
-      subject: `Lembrete: sua consulta é amanhã — ${dataFormatada}`,
-      html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 24px;">
-          <h2 style="color: #1a7a4a;">Olá, ${dados.nomePaciente}!</h2>
-          <p>Este é um lembrete da sua consulta marcada para:</p>
-          <div style="background: #f0faf4; padding: 16px; border-radius: 8px; margin: 16px 0; border-left: 4px solid #1a7a4a;">
-            <p style="margin: 4px 0;"><strong>📅 Data e hora:</strong> ${dataFormatada}</p>
-            <p style="margin: 4px 0;"><strong>👨‍⚕️ Profissional:</strong> ${dados.nomeFisioterapeuta}</p>
-          </div>
-          <p>Caso precise cancelar ou remarcar, acesse a plataforma com antecedência.</p>
-          <p style="color: #888; font-size: 12px; margin-top: 24px;">UnBemEstar — Clínica de Fisioterapia</p>
-        </div>
-      `,
-    });
-
-    if (error) throw new Error(`Erro ao enviar lembrete: ${error.message}`);
+    return this.sendEmail({
+      to,
+      subject: APPOINTMENT_REMINDER_SUBJECT,
+      html: buildAppointmentReminderHtml(reminderData),
+    })
   }
 }
