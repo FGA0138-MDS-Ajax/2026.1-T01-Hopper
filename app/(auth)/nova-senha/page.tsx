@@ -9,25 +9,31 @@ export default function NovaSenhaPage() {
   const router = useRouter();
   const [novaSenha, setNovaSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
-  const [email, setEmail] = useState("");
-  const [codigo, setCodigo] = useState("");
+  
+  // Corrigido: Inicializa os estados lendo diretamente do sessionStorage com segurança
+  const [email, setEmail] = useState(() => {
+    if (typeof window !== "undefined") {
+      return sessionStorage.getItem("recuperacao_email") ?? "";
+    }
+    return "";
+  });
+
+  const [codigo, setCodigo] = useState(() => {
+    if (typeof window !== "undefined") {
+      return sessionStorage.getItem("recuperacao_codigo") ?? "";
+    }
+    return "";
+  });
+
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState("");
 
-  // Recupera e-mail + código vindos da etapa anterior (esqueceu-senha)
+  // O useEffect agora cuida estritamente do redirecionamento se os dados não existirem
   useEffect(() => {
-    const emailSalvo = sessionStorage.getItem("recuperacao_email") ?? "";
-    const codigoSalvo = sessionStorage.getItem("recuperacao_codigo") ?? "";
-
-    if (!emailSalvo || !codigoSalvo) {
-      // sem contexto de recuperação: volta para o início do fluxo
+    if (!email || !codigo) {
       router.replace("/esqueceu-senha");
-      return;
     }
-
-    setEmail(emailSalvo);
-    setCodigo(codigoSalvo);
-  }, [router]);
+  }, [email, codigo, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -133,10 +139,9 @@ export default function NovaSenhaPage() {
           </div>
         </div>
 
-        {/* LADO DIREITO: Identidade Corporativa com Logo e Nome */}
+        {/* LADO DIREITO: Identidade Corporativa */}
         <div className="relative hidden w-1/2 flex-col justify-between bg-gradient-to-b from-[#3AAFA9] to-[#2B7A78] p-12 text-white md:flex">
           
-          {/* Topo com o Logo e Nome da Clínica igual à tela de login */}
           <div className="flex items-center gap-3 z-10">
             <Image
               src="/imagens/UnBemEstarLg1.png"
@@ -155,7 +160,6 @@ export default function NovaSenhaPage() {
             </div>
           </div>
 
-          {/* Conteúdo Central explicativo */}
           <div className="my-auto space-y-4 z-10">
             <h2 className="text-4xl font-extrabold leading-tight">
               Quase pronto!
@@ -165,7 +169,6 @@ export default function NovaSenhaPage() {
             </p>
           </div>
 
-          {/* Rodapé inferior apenas para equilibrar o layout visual */}
           <div className="space-y-4 z-10 invisible">
             <p className="text-sm opacity-80">Espaço reservado</p>
           </div>

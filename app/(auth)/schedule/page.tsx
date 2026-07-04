@@ -22,6 +22,7 @@ import {
   AlertCircle,
   Loader2,
 } from "lucide-react";
+import { Suspense, useEffect, useState } from "react";
 
 // ─────────────────────────────────────────────────────────────
 // tipos
@@ -783,26 +784,26 @@ function ScheduleContent() {
   });
 
   // Buscar serviços
-  useEffect(() => {
-    async function load() {
-      setLoadServ(true);
-      try {
-        // 🔁 const res = await fetch("/api/services"); const data = await res.json();
-        await new Promise((r) => setTimeout(r, 600));
-        setServicos([
-          { id: "1", nome: "Fisioterapia Ortopédica",  descricao: "Reabilitação musculoesquelética", duracao: 50, icone: "🦴", categoria: "Ortopedia" },
-          { id: "2", nome: "Fisioterapia Neurológica", descricao: "Condições neurológicas",          duracao: 60, icone: "🧠", categoria: "Neurologia" },
-          { id: "3", nome: "Fisioterapia Respiratória",descricao: "Reabilitação pulmonar",           duracao: 45, icone: "🫁", categoria: "Respiratória" },
-          { id: "4", nome: "RPG",                      descricao: "Reeducação postural global",      duracao: 60, icone: "🧘", categoria: "Postura" },
-          { id: "5", nome: "Pilates Terapêutico",      descricao: "Fortalecimento e flexibilidade",  duracao: 50, icone: "💪", categoria: "Condicionamento" },
-          { id: "6", nome: "Acupuntura",               descricao: "Estimulação de pontos",           duracao: 40, icone: "🎯", categoria: "Complementar" },
-        ]);
-      } finally {
-        setLoadServ(false);
+    useEffect(() => {
+      async function load() {
+        setLoadServ(true);
+        try {
+          // 🔁 const res = await fetch("/api/services"); const data = await res.json();
+          await new Promise((r) => setTimeout(r, 600));
+          setServicos([
+            { id: "1", nome: "Fisioterapia Ortopédica",  descricao: "Reabilitação musculoesquelética", duracao: 50, icone: "🦴", categoria: "Ortopedia" },
+            { id: "2", nome: "Fisioterapia Neurológica", descricao: "Condições neurológicas",          duracao: 60, icone: "🧠", categoria: "Neurologia" },
+            { id: "3", nome: "Fisioterapia Respiratória",descricao: "Reabilitação pulmonar",           duracao: 45, icone: "🫁", categoria: "Respiratória" },
+            { id: "4", nome: "RPG",                      descricao: "Reeducação postural global",      duracao: 60, icone: "🧘", categoria: "Postura" },
+            { id: "5", nome: "Pilates Terapêutico",      descricao: "Fortalecimento e flexibilidade",  duracao: 50, icone: "💪", categoria: "Condicionamento" },
+            { id: "6", nome: "Acupuntura",               descricao: "Estimulação de pontos",           duracao: 40, icone: "🎯", categoria: "Complementar" },
+          ]);
+        } finally {
+          setLoadServ(false);
+        }
       }
-    }
-    load();
-  }, []);
+      load();
+    }, []);
 
   // Buscar profissionais quando chegar na etapa 3
   useEffect(() => {

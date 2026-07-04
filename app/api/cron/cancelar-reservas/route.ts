@@ -1,9 +1,12 @@
 import { AppointmentRepository } from '../../../../lib/repositories/AppointmentRepository'
+// Importe o cliente singleton do Supabase baseado na sua estrutura
+import { supabase } from '../../../../lib/supabaseClient' 
 
 /** janela de expiração: reservas sem confirmação há mais de 5 minutos */
 const EXPIRACAO_MS = 5 * 60 * 1000
 
-const repository = new AppointmentRepository()
+// Injete o cliente do Supabase na inicialização do repositório
+const repository = new AppointmentRepository(supabase)
 
 export async function GET(request: Request) {
   const authHeader = request.headers.get('authorization')
