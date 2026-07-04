@@ -2,16 +2,6 @@ import { AppointmentRepository } from '../../../../lib/repositories/AppointmentR
 import { NotificationService } from '../../../../lib/services/NotificationService'
 import { supabase } from '../../../../lib/supabaseClient'
 
-const repository = new AppointmentRepository(supabase)
-const notificationService = new NotificationService()
-
-/**
- * Calcula a janela [início, fim) do dia seguinte em ISO string.
- *
- * TODO: confirmar timezone de `data_hora` no Supabase (lacuna 3). Esta janela
- * é calculada em UTC; se as consultas forem armazenadas em horário local sem
- * timezone, ajustar para evitar consultas perdidas/duplicadas nas bordas.
- */
 function getTomorrowWindow(): { start: string; end: string } {
   const now = new Date()
 
@@ -26,6 +16,9 @@ function getTomorrowWindow(): { start: string; end: string } {
 }
 
 export async function GET(request: Request) {
+  const repository = new AppointmentRepository(supabase)
+  const notificationService = new NotificationService()
+
   const authHeader = request.headers.get('authorization')
 
   if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
