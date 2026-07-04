@@ -1,7 +1,8 @@
 import { AppointmentRepository } from '../../../../lib/repositories/AppointmentRepository'
 import { NotificationService } from '../../../../lib/services/NotificationService'
+import { supabase } from '../../../../lib/supabaseClient'
 
-const repository = new AppointmentRepository()
+const repository = new AppointmentRepository(supabase)
 const notificationService = new NotificationService()
 
 /**
@@ -34,16 +35,12 @@ export async function GET(request: Request) {
   try {
     const { start, end } = getTomorrowWindow()
 
-    // busca as consultas de amanhã ainda ativas, já com paciente/profissional/serviço
     const consultas = await repository.findUpcomingForReminder(start, end)
 
-    // dispara um lembrete por consulta; envios individuais não lançam, então
-    // um e-mail ruim não derruba o lote inteiro
     const resultados = await Promise.all(
       consultas.map((consulta) => {
         const email = consulta.paciente?.email
 
-        // sem e-mail do paciente não há como notificar — registra como falha
         if (!email) {
           return Promise.resolve({
             to: '(sem e-mail)',
